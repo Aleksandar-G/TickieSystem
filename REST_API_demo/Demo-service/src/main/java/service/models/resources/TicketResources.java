@@ -66,14 +66,24 @@ public class TicketResources {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response AddNewTicket(Ticket ticket){
-        String url = uriInfo.getAbsolutePath()+ "/" + ticket.ID;
+
+       db.addTicket(ticket);
+
+        String url = uriInfo.getAbsolutePath()+ "" + ticket.ID;
 
         URI uri = URI.create(url);
 
         return Response.created(uri).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+     public Response deleteTicket(@PathParam("id") String id){
+        db.deleteTicket(id);
+
+        return Response.noContent().build();
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class main {
 
-    private static final URI BASE_URI = URI.create("http://localhost:9090/");
+    private static final URI BASE_URI = URI.create("http://localhost:9090");
 
     public static void main(String[] args) {
 

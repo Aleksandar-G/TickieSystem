@@ -24,6 +24,10 @@ public class Ticket {
         return DifficultyLevel;
     }
 
+    public Ticket(){
+
+    }
+
     public Ticket(String p_ID, String p_description, String p_priorityLevel, String p_DifficultyLevel){
 
         this.description = p_description;
