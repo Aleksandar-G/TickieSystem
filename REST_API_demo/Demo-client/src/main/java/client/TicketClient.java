@@ -34,7 +34,7 @@ public class TicketClient {
         tc.getAllTickets();
         tc.getTicketByid("asd");
         tc.AddTicket("newId","test","test,","test");
-        tc.deleteTicket("asd");
+        //tc.deleteTicket("asd");
     }
 
     private void getTest(){

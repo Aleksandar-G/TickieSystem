@@ -36,4 +36,17 @@ public class Ticket {
         this.PriorityLevel = p_priorityLevel;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ID='" + ID + '\'' +
+                ", description='" + description + '\'' +
+                ", PriorityLevel='" + PriorityLevel + '\'' +
+                ", DifficultyLevel='" + DifficultyLevel + '\'' +
+                '}';
+    }
+
+
 }
+
+
