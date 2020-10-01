@@ -1,5 +1,0 @@
-models/Ticket.java
- models.Ticket
-client/TicketClient.java
- client.TicketClient
- client.TicketClient$1

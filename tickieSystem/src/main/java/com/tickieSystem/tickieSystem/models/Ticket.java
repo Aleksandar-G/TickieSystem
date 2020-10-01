@@ -1,13 +1,13 @@
 package com.tickieSystem.tickieSystem.models;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Ticket {
 
     public String ID;
     public String description;
-    public Date DueDate;
+    public LocalDate DueDate;
     public String PriorityLevel;
     public String DifficultyLevel;
 
@@ -32,7 +32,7 @@ public class Ticket {
 
     }
 
-    public Ticket(String p_ID, String p_description,Date p_DueDate, String p_priorityLevel, String p_DifficultyLevel){
+    public Ticket(String p_ID, String p_description,LocalDate p_DueDate, String p_priorityLevel, String p_DifficultyLevel){
 
         this.description = p_description;
         this.DueDate = p_DueDate;

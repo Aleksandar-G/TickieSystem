@@ -2,6 +2,8 @@ package com.tickieSystem.tickieSystem.db;
 
 import com.tickieSystem.tickieSystem.models.Ticket;
 
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,11 @@ public class db {
 
     public db(){
 
-        Ticket ticket = new Ticket("1","test ticket","test level","test difficuly_level");
-        Ticket ticket2 = new Ticket("2","nice one","eazy","not difficult");
+        //Ticket ticket = new Ticket("1","test ticket","test level","test difficuly_level");
+        //Ticket ticket2 = new Ticket("2","nice one","eazy","not difficult");
+
+        Ticket ticket = new Ticket("1","description",LocalDate.now(),"High","intern");
+        Ticket ticket2 = new Ticket("2","description",LocalDate.now(),"High","senior");
 
         tickets.add(ticket);
         tickets.add(ticket2);
@@ -27,7 +32,7 @@ public class db {
     }
 
     public boolean deleteTicket(String ticektId){
-        if (tickets.remove(tickets.stream().filter(x -> x.ID.equals(ticektId)).findFirst().get())){
+        if (tickets.remove(tickets.stream().filter(x -> x.ID == ticektId).findFirst().get())){
             return true;
         }else{
             return false;
