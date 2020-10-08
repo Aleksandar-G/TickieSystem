@@ -12,14 +12,17 @@ public class db {
 
     public db(){
 
-        //Ticket ticket = new Ticket("1","test ticket","test level","test difficuly_level");
-        //Ticket ticket2 = new Ticket("2","nice one","eazy","not difficult");
-
         Ticket ticket = new Ticket("1","description",LocalDate.now(),"High","intern");
         Ticket ticket2 = new Ticket("2","description",LocalDate.now(),"High","senior");
+        Ticket ticket3 = new Ticket("3","NewDescription",LocalDate.now(),"Low","junior");
+        Ticket ticket4 = new Ticket("4","NewDescriptionTest",LocalDate.now(),"Low","junior");
+        //Ticket ticket5 = new Ticket("5","NewDescriptionTestFeedbackSession",LocalDate.now(),"HIgh","junior");
 
         tickets.add(ticket);
         tickets.add(ticket2);
+        tickets.add(ticket3);
+        tickets.add(ticket4);
+        //tickets.add(ticket5);
     }
 
     public List<Ticket> getTickets(){

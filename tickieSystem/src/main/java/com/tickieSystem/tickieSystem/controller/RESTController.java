@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class RESTController {
-    //private final AtomicLong counter = new AtomicLong();
     private static final db db = new db();
 
-    @GetMapping("/tickets")
+    @GetMapping(value = "/tickets", produces = "application/json")
     public List<Ticket> Getticket (@RequestParam(value = "id", required = false)String id){
         List<Ticket> result = new ArrayList<>();
 
