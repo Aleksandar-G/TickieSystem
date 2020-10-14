@@ -1,6 +1,7 @@
 package com.tickieSystem.tickieSystem.controller;
 
-import com.tickieSystem.tickieSystem.db.db;
+import com.tickieSystem.tickieSystem.db.IDataAccessLayer;
+import com.tickieSystem.tickieSystem.factories.DataBaseFactory;
 import com.tickieSystem.tickieSystem.models.Ticket;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,9 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class RESTController {
-    private static final db db = new db();
+
+
+    private static final IDataAccessLayer db = DataBaseFactory.GetDatabase("mock1");
 
     @GetMapping(value = "/tickets", produces = "application/json")
     public List<Ticket> Getticket (@RequestParam(value = "id", required = false)String id){
@@ -18,7 +21,7 @@ public class RESTController {
 
         if (id == null)
         {
-            result.addAll(db.getTickets());
+            result.addAll(db.getAllTickets());
         }
         else {
             result.add(db.getTicket(id));
