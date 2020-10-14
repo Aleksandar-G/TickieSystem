@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class db {
+public class db implements IDataAccessLayer {
     private List<Ticket> tickets = new ArrayList<Ticket>();
 
     public db(){
@@ -16,24 +16,26 @@ public class db {
         Ticket ticket2 = new Ticket("2","description",LocalDate.now(),"High","senior");
         Ticket ticket3 = new Ticket("3","NewDescription",LocalDate.now(),"Low","junior");
         Ticket ticket4 = new Ticket("4","NewDescriptionTest",LocalDate.now(),"Low","junior");
-        //Ticket ticket5 = new Ticket("5","NewDescriptionTestFeedbackSession",LocalDate.now(),"HIgh","junior");
+        Ticket ticket5 = new Ticket("5","NewDescriptionTestFeedbackSession",LocalDate.now(),"HIgh","junior");
 
         tickets.add(ticket);
         tickets.add(ticket2);
         tickets.add(ticket3);
         tickets.add(ticket4);
-        //tickets.add(ticket5);
+        tickets.add(ticket5);
     }
 
-    public List<Ticket> getTickets(){
-        return  this.tickets;
+    @Override
+    public List<Ticket> getAllTickets() {
+        return null;
     }
 
+    @Override
     public void addTicket(Ticket ticket){
 
         tickets.add(ticket);
     }
-
+    @Override
     public boolean deleteTicket(String ticektId){
         if (tickets.remove(tickets.stream().filter(x -> x.ID == ticektId).findFirst().get())){
             return true;
@@ -42,10 +44,25 @@ public class db {
         }
     }
 
+    @Override
+    public void editTicket(String ticketID) {
+
+    }
+
     public Ticket getTicket(String id){
         Ticket res = tickets.stream().filter(x -> x.ID.equals(id)).findFirst().orElse(null);
 
         return res;
+    }
+
+    @Override
+    public List<Ticket> getTicketsWithDifficulty(String difficulty) {
+        return null;
+    }
+
+    @Override
+    public List<Ticket> getTicketsWithPriority(String Difficulty) {
+        return null;
     }
 
     public List<Ticket> getTicketWithDiffuculty(String diff){
