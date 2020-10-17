@@ -27,7 +27,7 @@ public class db implements IDataAccessLayer {
 
     @Override
     public List<Ticket> getAllTickets() {
-        return null;
+        return tickets;
     }
 
     @Override

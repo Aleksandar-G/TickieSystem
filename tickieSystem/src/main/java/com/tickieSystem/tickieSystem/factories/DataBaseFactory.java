@@ -4,13 +4,15 @@ import com.tickieSystem.tickieSystem.db.IDataAccessLayer;
 import com.tickieSystem.tickieSystem.db.db;
 import com.tickieSystem.tickieSystem.db.mockdb;
 
+import javax.validation.constraints.NotNull;
+
 public class DataBaseFactory {
 
     public DataBaseFactory(){
     }
-
+@NotNull
     public static IDataAccessLayer GetDatabase(String database){
-         IDataAccessLayer db = null;
+         IDataAccessLayer db = new db();
             if (database.equals("remote")){
                 //TO DO
             }
