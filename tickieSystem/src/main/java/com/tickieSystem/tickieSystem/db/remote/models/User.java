@@ -1,19 +1,17 @@
 package com.tickieSystem.tickieSystem.db.remote.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue()
     private Integer id;
 
     private String name;
 
-    private String email;
+    private String level;
 
     public Integer getId() {
         return id;
@@ -31,11 +29,11 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLevel() {
+        return level;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLevel(String level) {
+        this.level = level;
     }
 }
