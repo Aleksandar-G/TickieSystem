@@ -2,7 +2,6 @@ package com.tickieSystem.tickieSystem.factories;
 
 import com.tickieSystem.tickieSystem.db.IDataAccessLayer;
 import com.tickieSystem.tickieSystem.db.db;
-import com.tickieSystem.tickieSystem.db.mockdb;
 
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +19,7 @@ public class DataBaseFactory {
                 db = new db();
             }
             else if(database.equals("mock2")){
-                db = new mockdb();
+
             }
             else{
                 throw new IllegalArgumentException("NO such database");

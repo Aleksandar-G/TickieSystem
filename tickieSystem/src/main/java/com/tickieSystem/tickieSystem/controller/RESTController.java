@@ -2,8 +2,8 @@ package com.tickieSystem.tickieSystem.controller;
 
 import com.tickieSystem.tickieSystem.db.IDataAccessLayer;
 import com.tickieSystem.tickieSystem.factories.DataBaseFactory;
-import com.tickieSystem.tickieSystem.models.Ticket;
 import org.springframework.web.bind.annotation.*;
+import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class RESTController {
 
     private static final IDataAccessLayer db = DataBaseFactory.GetDatabase("mock1");
 
-    @GetMapping(value = "/tickets", produces = "application/json")
+   /* @GetMapping(value = "/tickets", produces = "application/json")
     public List<Ticket> Getticket (@RequestParam(value = "id", required = false)String id){
         List<Ticket> result = new ArrayList<>();
 
@@ -35,5 +35,5 @@ public class RESTController {
     @DeleteMapping("/ticket/{id}")
     void deleteEmployee(@PathVariable String id) {
         db.deleteTicket(id);
-    }
+    }*/
 }

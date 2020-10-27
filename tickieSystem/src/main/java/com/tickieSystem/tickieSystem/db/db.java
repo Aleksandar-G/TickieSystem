@@ -1,18 +1,17 @@
 package com.tickieSystem.tickieSystem.db;
 
-import com.tickieSystem.tickieSystem.models.Ticket;
-
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 
 public class db implements IDataAccessLayer {
     private List<Ticket> tickets = new ArrayList<Ticket>();
 
     public db(){
 
-        Ticket ticket = new Ticket("1","description",LocalDate.now(),"High","intern");
+       /* Ticket ticket = new Ticket("1","description",LocalDate.now(),"High","intern");
         Ticket ticket2 = new Ticket("2","description",LocalDate.now(),"High","senior");
         Ticket ticket3 = new Ticket("3","NewDescription",LocalDate.now(),"Low","junior");
         Ticket ticket4 = new Ticket("4","NewDescriptionTest",LocalDate.now(),"Low","junior");
@@ -22,10 +21,10 @@ public class db implements IDataAccessLayer {
         tickets.add(ticket2);
         tickets.add(ticket3);
         tickets.add(ticket4);
-        tickets.add(ticket5);
+        tickets.add(ticket5);*/
     }
 
-    @Override
+   /* @Override
     public List<Ticket> getAllTickets() {
         return tickets;
     }
@@ -74,5 +73,5 @@ public class db implements IDataAccessLayer {
         }
 
         return res;
-    }
+    }*/
 }

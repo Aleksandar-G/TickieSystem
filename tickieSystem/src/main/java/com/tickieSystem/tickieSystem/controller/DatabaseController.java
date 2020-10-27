@@ -5,14 +5,13 @@ import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/db") // This means URL's start with /demo (after Application
+@CrossOrigin(origins = "http://localhost:3000")
 
 public class DatabaseController {
 
@@ -38,9 +37,20 @@ public class DatabaseController {
         // This returns a JSON or XML with the users
         return ticketRepository.findAll();
     }
-    /*@GetMapping(path="/tickets/{id}")
-    public @ResponseBody Iterable<Ticket> getAllTickets() {
+    @GetMapping(value="/tickets")
+    public @ResponseBody  Optional<Ticket> getTicket(@RequestParam(value = "id", required = false)String id) {
         // This returns a JSON or XML with the users
-        return ticketRepository.findAll();
-    }*/
+        Optional<Ticket> res = null;
+
+        if (id != null){
+           res = ticketRepository.findById(Integer.parseInt(id));
+        }else{
+            res = ticketRepository.findById(1);
+        }
+        return  res;
+    }
+    @PostMapping(path = "tickets/add")
+    public void addTicket(@RequestBody Ticket ticket){
+        ticketRepository.save(ticket);
+    }
 }

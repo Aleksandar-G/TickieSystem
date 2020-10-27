@@ -8,14 +8,26 @@ import java.sql.Date;
 public class Ticket {
 
     @Id
-    @GeneratedValue()
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "ticketdescription")
     private String description;
     private String priority;
     private Date duedate;
     private String difficulty;
+
+    public Ticket() {
+
+    }
+
+    public Ticket(String description, String priority, Date duedate, String difficulty) {
+        this.description = description;
+        this.priority = priority;
+        this.duedate = duedate;
+        this.difficulty = difficulty;
+    }
+
+
 
     public Integer getId() {
         return id;
