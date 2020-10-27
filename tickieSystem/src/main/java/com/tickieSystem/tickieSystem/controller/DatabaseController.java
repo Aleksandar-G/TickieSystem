@@ -38,4 +38,9 @@ public class DatabaseController {
         // This returns a JSON or XML with the users
         return ticketRepository.findAll();
     }
+    /*@GetMapping(path="/tickets/{id}")
+    public @ResponseBody Iterable<Ticket> getAllTickets() {
+        // This returns a JSON or XML with the users
+        return ticketRepository.findAll();
+    }*/
 }
