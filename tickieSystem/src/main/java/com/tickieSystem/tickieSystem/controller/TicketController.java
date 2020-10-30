@@ -1,6 +1,6 @@
 package com.tickieSystem.tickieSystem.controller;
 
-import com.tickieSystem.tickieSystem.models.Ticket;
+import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,21 +14,21 @@ public class TicketController {
     public static List<Ticket> ArrangeTicketsByPriority(List<Ticket> tickets){
 
         List<Ticket> result;
-        result = tickets.stream().sorted(Comparator.comparing(ticket -> ticket.PriorityLevel)).collect(Collectors.toList());
+        result = tickets.stream().sorted(Comparator.comparing(ticket -> ticket.getPriority())).collect(Collectors.toList());
 
         return result;
     }
 
     public static List<Ticket> ArrangeTicketsByDate(List<Ticket> tickets){
         List<Ticket> result;
-        result = tickets.stream().sorted(Comparator.comparing(ticket -> ticket.DueDate)).collect(Collectors.toList());
+        result = tickets.stream().sorted(Comparator.comparing(ticket -> ticket.getDuedate())).collect(Collectors.toList());
 
         return result;
     }
     public static List<Ticket> GetTicketsByDifficulty(List<Ticket> tickets,String difficultyLevel){
         List<Ticket> result;
 
-        result = tickets.stream().filter(x -> x.DifficultyLevel.equals(difficultyLevel)).collect(Collectors.toList());
+        result = tickets.stream().filter(x -> x.getDifficulty().equals(difficultyLevel)).collect(Collectors.toList());
 
         return  result;
     }
