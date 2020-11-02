@@ -3,18 +3,22 @@ package com.tickieSystem.tickieSystem.controller;
 
 import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
+import com.tickieSystem.tickieSystem.security.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/db") // This means URL's start with /demo (after Application
 
 public class DatabaseController {
+
+    @Bean
+    CorsFilter corsFilter() {
+        CorsFilter filter = new CorsFilter();
+        return filter;
+    }
 
 
     @Autowired
