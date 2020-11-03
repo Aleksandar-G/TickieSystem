@@ -18,11 +18,11 @@ import java.util.Optional;
 
 public class DatabaseController {
 
-    @Bean
+   /* @Bean
     CorsFilter corsFilter() {
         CorsFilter filter = new CorsFilter();
         return filter;
-    }
+    }*/
 
 
     @Autowired

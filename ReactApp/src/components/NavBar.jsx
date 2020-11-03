@@ -9,6 +9,8 @@ import {
 import App from '../App';
 import About from '../About'
 import Home from './Home'
+import Login from './LoginComponent';
+import SecuredRoute from './SecuredRoute';
 
 function NavBar() {
 
@@ -30,17 +32,23 @@ function NavBar() {
             <Link to="/profile"><li className="nav-item nav-link">
               Profile
       </li></Link>
+      <Link to="/login"><li className="nav-item nav-link">
+              Login
+      </li></Link>
           </ul>
 
         </div>
       </nav>
       <Switch>
         
-        <Route exact path="/">
+        <SecuredRoute exact path="/">
           <Home />
-        </Route>
-        <Route path="/profile">
+        </SecuredRoute>
+        <SecuredRoute path="/profile">
           <About />
+        </SecuredRoute>
+        <Route path="/login">
+          <Login />
         </Route>
 
       </Switch>
