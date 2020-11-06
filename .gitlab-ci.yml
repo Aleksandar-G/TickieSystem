@@ -1,7 +1,6 @@
 build:
   stage: build
   script:
-    - cd tickieSystem
-    - ./gradlew build
+    - echo "hello"
 
 
