@@ -1,6 +1,7 @@
-build1:
+build:
   stage: build
   script:
-    - echo "Do your build here"
+    - cd tickieSystem
+    - ./gradlew build
 
 
