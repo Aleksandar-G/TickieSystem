@@ -1,6 +1,6 @@
 build1:
   stage: build
-  script:
+  scriasdpt:
     - echo "Do your build here"
 
 
