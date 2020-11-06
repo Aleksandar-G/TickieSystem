@@ -1,5 +1,9 @@
 package com.tickieSystem.tickieSystem.db;
 
+import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
+import com.tickieSystem.tickieSystem.controller.TicketController;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IDataAccessLayer {

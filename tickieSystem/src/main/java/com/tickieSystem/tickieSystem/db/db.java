@@ -1,6 +1,5 @@
 package com.tickieSystem.tickieSystem.db;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,9 @@ public class db implements IDataAccessLayer {
 
     public db(){
 
-       /* Ticket ticket = new Ticket("1","description",LocalDate.now(),"High","intern");
+
+        /*Ticket ticket = new Ticket("1","description",LocalDate.now(),"High","intern");
+
         Ticket ticket2 = new Ticket("2","description",LocalDate.now(),"High","senior");
         Ticket ticket3 = new Ticket("3","NewDescription",LocalDate.now(),"Low","junior");
         Ticket ticket4 = new Ticket("4","NewDescriptionTest",LocalDate.now(),"Low","junior");
@@ -34,13 +35,10 @@ public class db implements IDataAccessLayer {
 
         tickets.add(ticket);
     }
+
     @Override
-    public boolean deleteTicket(String ticektId){
-        if (tickets.remove(tickets.stream().filter(x -> x.ID == ticektId).findFirst().get())){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean deleteTicket(String ticketID) {
+        return false;
     }
 
     @Override
@@ -48,8 +46,13 @@ public class db implements IDataAccessLayer {
 
     }
 
-    public Ticket getTicket(String id){
-        Ticket res = tickets.stream().filter(x -> x.ID.equals(id)).findFirst().orElse(null);
+    @Override
+    public Ticket getTicket(String ticketID) {
+        return null;
+    }
+
+    public Ticket getTicket(Integer id){
+        Ticket res = tickets.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
 
         return res;
     }
@@ -67,7 +70,7 @@ public class db implements IDataAccessLayer {
     public List<Ticket> getTicketWithDiffuculty(String diff){
         List<Ticket> res = new ArrayList<Ticket>();
         for (Ticket t : tickets){
-            if (t.DifficultyLevel.equals(diff)){
+            if (t.getDifficulty().equals(diff)){
                 res.add(t);
             }
         }

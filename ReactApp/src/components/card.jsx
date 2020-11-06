@@ -5,6 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import AssignTicketService from '../Service/AssignTicketService'
+import axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +26,21 @@ const useStyles = makeStyles({
 
 });
 
+const API_BASE_ADDRESS = "http://localhost:8080/db";
+
+const doit = function(ticketId,username){
+  axios.post( 'http://localhost:8080/db/tickets/assign', {
+    ticketId: ticketId,
+    username: username
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
 export default function Ticket(props) {
   const classes = useStyles();
 
@@ -31,7 +48,7 @@ export default function Ticket(props) {
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h2">
-          {props.ticket.ID}
+          {props.ticket.id}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           DueDate: {props.ticket.duedate}
@@ -46,8 +63,10 @@ export default function Ticket(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Assign Ticket</Button>
+        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}>Assign Ticket</Button>
       </CardActions>
     </Card>
   );
 }
+
+//onClick={AssignTicketService.assignTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"))} 
