@@ -97,9 +97,27 @@ public class DatabaseController {
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
-    @PostMapping(path = "/tickets/test")
-    public void test(@RequestBody User_tickets ticketId){
-        user_ticketsRepository.save(ticketId);
-    }
+   @GetMapping(path = "user/isadmin")
+    public boolean userIsAdmin(@RequestBody String username){
+        User u = getUserByUsername(username);
+        if (u.getLevel().equals("senior")){
+            return true;
+        }else{
+            return false;
+        }
+   }
+
+   private User getUserByUsername(String username){
+
+       Optional<User> u = userRepository.findByname(username);
+
+       if (u.isPresent()){
+           User user = u.get();
+            return user;
+       }
+       else{
+           throw new IllegalArgumentException("User not found");
+       }
+   }
 
 }
