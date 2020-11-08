@@ -1,4 +1,4 @@
-package com.tickieSystem.tickieSystem.controller;
+package com.tickieSystem.tickieSystem.logic;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 
 import java.util.ArrayList;
