@@ -26,7 +26,7 @@ import java.util.Optional;
 @RequestMapping(path="/db") // This means URL's start with /demo (after Application
 /*@CrossOrigin(origins = "http://localhost:3000")*/
 @CrossOrigin()
-public class DatabaseController {
+public class TicketAPIController {
 
     CorsFilter corsFilter() {
         CorsFilter filter = new CorsFilter();
