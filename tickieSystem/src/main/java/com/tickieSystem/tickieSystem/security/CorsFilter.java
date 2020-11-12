@@ -1,11 +1,13 @@
 package com.tickieSystem.tickieSystem.security;
 
+import org.springframework.stereotype.Service;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+@Service
 public class CorsFilter implements Filter {
 
     @Override

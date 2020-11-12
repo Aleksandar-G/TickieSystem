@@ -10,28 +10,28 @@ public class User_tickets {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
-    private Integer user_id;
-    private Integer ticket_id;
+    private Integer userid;
+    private Integer ticketid;
 
     public User_tickets(Integer user_id, Integer ticket_id) {
-        this.user_id = user_id;
-        this.ticket_id = ticket_id;
+        this.userid = user_id;
+        this.ticketid = ticket_id;
     }
 
     public Integer getUser_id() {
-        return user_id;
+        return userid;
     }
 
     public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+        this.userid = user_id;
     }
 
     public Integer getTicket_id() {
-        return ticket_id;
+        return ticketid;
     }
 
     public void setTicket_id(Integer ticket_id) {
-        this.ticket_id = ticket_id;
+        this.ticketid = ticket_id;
     }
 
     public User_tickets() {

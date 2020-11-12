@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 //import Com from './com';
-import Card from "./components/card";
 import GridTickets from "./components/GridTickets";
 import * as serviceWorker from "./serviceWorker";
 import { Grid } from "@material-ui/core";

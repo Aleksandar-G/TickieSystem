@@ -18,20 +18,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/db") // This means URL's start with /demo (after Application
-/*@CrossOrigin(origins = "http://localhost:3000")*/
-@CrossOrigin()
+//@CrossOrigin(origins = "http://localhost:3000")
+
 public class TicketAPIController {
 
+    /*@Bean
     CorsFilter corsFilter() {
         CorsFilter filter = new CorsFilter();
         return filter;
-    }
+    }*/
+
+    @Autowired
+    CorsFilter corsFilter;
 
 
     @Autowired
@@ -41,27 +49,14 @@ public class TicketAPIController {
     private UserRepository userRepository;
 
     @Autowired
-    private User_TicketsRepository user_ticketsRepository;
-
-   /* @PostMapping(path="/users/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser (@RequestParam String name
-            , @RequestParam String level) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-
-        User n = new User();
-        n.setName(name);
-        n.setLevel(level);
-        userRepository.save(n);
-        return "Saved";
-    }*/
+    private User_TicketsRepository user_TicketsRepository;
 
     @GetMapping(path="/tickets/all")
     public @ResponseBody Iterable<Ticket> getAllTickets() {
         // This returns a JSON or XML with the users
         return ticketRepository.findAll();
     }
-    @GetMapping(value="/tickets")
+    /*@GetMapping(value="/tickets")
     public @ResponseBody  Optional<Ticket> getTicket(@RequestParam(value = "id", required = false)String id) {
         // This returns a JSON or XML with the users
         Optional<Ticket> res = null;
@@ -72,8 +67,22 @@ public class TicketAPIController {
             res = ticketRepository.findById(1);
         }
         return  res;
+    }*/
+    @GetMapping(value="/tickets")
+    public @ResponseBody List<Ticket> getTicketsForUser(@RequestParam(value = "username", required = false)String username) {
+        // This returns a JSON or XML with the users
+
+        User u = getUserByUsername(username);
+
+        List<User_tickets> ut = user_TicketsRepository.findAllByUserid(u.getId());
+        //assert ut != null;
+        List<Integer> utInt = ut.stream().map(User_tickets::getId).collect(Collectors.toList());
+        Iterable<Integer>ticketIds = utInt;
+        Iterable<Ticket>ticketsForUser = ticketRepository.findAllById(ticketIds);
+        List<Ticket> res = StreamSupport.stream(ticketsForUser.spliterator(),false).collect(Collectors.toList());
+        return res;
     }
-    @PostMapping(path = "tickets/add")
+    @PostMapping(path = "/tickets/add")
     public void addTicket(@RequestBody Ticket ticket){
         ticketRepository.save(ticket);
     }
@@ -88,7 +97,7 @@ public class TicketAPIController {
        if (u.isPresent()){
            User user = u.get();
            User_tickets entry = new User_tickets(user.getId(),ticketId);
-           user_ticketsRepository.save(entry);
+           user_TicketsRepository.save(entry);
        }
        else{
            throw new IllegalArgumentException("User not found");
@@ -119,5 +128,6 @@ public class TicketAPIController {
            throw new IllegalArgumentException("User not found");
        }
    }
+
 
 }

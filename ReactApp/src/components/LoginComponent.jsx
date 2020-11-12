@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 import AuthenticationService from '../Service/AuthenticationService';
+import RoutingService from '../Service/RoutingService'; 
 
 class LoginComponent extends Component {
 
@@ -46,7 +48,11 @@ class LoginComponent extends Component {
                 //this.props.history.push(`/courses`)
 
                 this.setState({ showSuccessMessage:true })
-            }).catch(() => {
+               /* if(this.state.showSuccessMessage){
+                    RoutingService.redirectBackTohome();
+                }*/
+            }).catch((error) => {
+                console.log(error);
                 this.setState({ showSuccessMessage: false })
                 this.setState({ hasLoginFailed: true })
             })
@@ -60,7 +66,8 @@ class LoginComponent extends Component {
                 <div className="container">
                     {/*<ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed}/>*/}
                     {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
-                    {this.state.showSuccessMessage && <div  className="alert alert-success">Login Sucessful</div>}
+                    {this.state.showSuccessMessage && <div className="alert alert-success">Login Sucessful</div>
+                    /*<Redirect to="/home" />*/}
                     {/*<ShowLoginSuccessMessage showSuccessMessage={this.state.showSuccessMessage}/>*/}
                     User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                     Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />

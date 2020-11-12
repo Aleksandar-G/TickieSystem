@@ -4,6 +4,8 @@ const API_URL = 'http://localhost:8080'
 
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 
+export let authtoken = "";
+
 class AuthenticationService {
 
     executeBasicAuthenticationService(username, password) {
@@ -20,7 +22,10 @@ class AuthenticationService {
     }
 
     createBasicAuthToken(username, password) {
-        return 'Basic ' + window.btoa(username + ":" + password)
+        
+        sessionStorage.setItem("token",'Basic ' + window.btoa(username + ":" + password))
+        return  'Basic ' + window.btoa(username + ":" + password)
+        //return authtoken;
     }
 
     registerSuccessfulLogin(username, password) {
@@ -28,6 +33,7 @@ class AuthenticationService {
         //console.log('registerSuccessfulLogin')
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
         this.setupAxiosInterceptors(this.createBasicAuthToken(username, password))
+        return Promise.resolve(3);
     }
 
     registerSuccessfulLoginForJwt(username, token) {
@@ -60,11 +66,12 @@ class AuthenticationService {
         axios.interceptors.request.use(
             (config) => {
                 if (this.isUserLoggedIn()) {
-                    config.headers.authorization = token
+                    config.headers.authorization = token 
                 }
                 return config
             }
         )
+        console.log("12312312323");
     }
 }
 

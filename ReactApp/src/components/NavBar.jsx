@@ -11,6 +11,8 @@ import About from '../About'
 import Home from './Home'
 import Login from './LoginComponent';
 import SecuredRoute from './SecuredRoute';
+import AddTicket from '../components/AddTicket';
+import Profile from './Profile';
 
 function NavBar() {
 
@@ -35,6 +37,9 @@ function NavBar() {
       <Link to="/login"><li className="nav-item nav-link">
               Login
       </li></Link>
+      <Link to="/addticket"><li className="nav-item nav-link">
+              addticket
+      </li></Link>
           </ul>
 
         </div>
@@ -45,11 +50,14 @@ function NavBar() {
           <Home />
         </SecuredRoute>
         <SecuredRoute path="/profile">
-          <About />
+          <Profile />
         </SecuredRoute>
         <Route path="/login">
           <Login />
         </Route>
+        <SecuredRoute path="/addticket">
+          <AddTicket />
+        </SecuredRoute>
 
       </Switch>
     </Router>

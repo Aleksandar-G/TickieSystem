@@ -26,9 +26,8 @@ const useStyles = makeStyles({
 
 });
 
-const API_BASE_ADDRESS = "http://localhost:8080/db";
 
-const doit = function(ticketId,username){
+/*const doit = function(ticketId,username){
   axios.post( 'http://localhost:8080/db/tickets/assign', {
     ticketId: ticketId,
     username: username
@@ -39,9 +38,9 @@ const doit = function(ticketId,username){
   .catch(function (error) {
     console.log(error);
   });
-}
+}*/
 
-export default function Ticket(props) {
+export default function HomeTicket(props) {
   const classes = useStyles();
 
   return (
@@ -63,7 +62,8 @@ export default function Ticket(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}>Assign Ticket</Button>
+       
+        <Button size="small" /*onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}*/>Close Ticket</Button>
       </CardActions>
     </Card>
   );
