@@ -2,6 +2,8 @@ import axios from "axios";
 //import GridTickets from './GridTickets'
 import { Grid } from '@material-ui/core';
 import ProfileGridTicket from './ProfileGridTicket';
+import AdminProfile from './AdminProfile';
+import NormalProfile from './NormalProfile';
 
 /*class Profile extends React.Component {
 
@@ -43,20 +45,22 @@ class Profile extends Component {
     super();
 
     this.state = {
-        role: String
+      role: String
     };
   }
 
-  componentDidMount(){
-    axios.get("http://localhost:8080/userCheck?username="+sessionStorage.getItem("authenticatedUser"))
+  componentDidMount() {
+    axios.get("http://localhost:8080/user/isadmin?username=" + sessionStorage.getItem("authenticatedUser")).then((res) => this.setState({role:res.data}))
   }
 
   render() {
-    return (
-      <div>
-        
-      </div>
-    );
+    debugger;
+    if (this.state.role == "admin") {
+      return <AdminProfile />
+    }
+    else {
+      return <NormalProfile />
+    }
   }
 }
 
