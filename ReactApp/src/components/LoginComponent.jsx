@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import AuthenticationService from '../Service/AuthenticationService';
-import RoutingService from '../Service/RoutingService'; 
 
 class LoginComponent extends Component {
 
@@ -41,16 +40,17 @@ class LoginComponent extends Component {
         //     this.setState({hasLoginFailed:true})
         // }
 
+       // let history = useHistory();
+       // let location = useLocation();
+       // let auth = useAuth();
+
        AuthenticationService
             .executeBasicAuthenticationService(this.state.username, this.state.password)
             .then(() => {
-                AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
-                //this.props.history.push(`/courses`)
+                AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password).then(this.props.history.push('/'));
 
                 this.setState({ showSuccessMessage:true })
-               /* if(this.state.showSuccessMessage){
-                    RoutingService.redirectBackTohome();
-                }*/
+
             }).catch((error) => {
                 console.log(error);
                 this.setState({ showSuccessMessage: false })
@@ -59,16 +59,16 @@ class LoginComponent extends Component {
 
     }
 
+
     render() {
         return (
             <div>
                 <h1>Login</h1>
                 <div className="container">
-                    {/*<ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed}/>*/}
+
                     {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
-                    {this.state.showSuccessMessage && <div className="alert alert-success">Login Sucessful</div>
-                    /*<Redirect to="/home" />*/}
-                    {/*<ShowLoginSuccessMessage showSuccessMessage={this.state.showSuccessMessage}/>*/}
+                    {this.state.showSuccessMessage && <div className="alert alert-success">Login Sucessful</div>}
+                    
                     User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                     Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     <button className="btn btn-success" onClick={this.loginClicked}>Login</button>

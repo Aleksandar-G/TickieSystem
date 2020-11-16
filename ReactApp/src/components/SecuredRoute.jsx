@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import { Redirect, Route,  useHistory,
     useLocation } from 'react-router-dom'
 import AuthenticationService from '../Service/AuthenticationService'
 
 export default function SecuredRoute({ children, ...rest }) {
+
+ // const authContent = createContext();
+
     return (
         /*<Route path={props.path} render ={data=>AuthenticationService.isUserLoggedIn()?(<props.component {...data}></props.component>):(<Redirect to ={{pathname:'/login'}}></Redirect>)}>
             

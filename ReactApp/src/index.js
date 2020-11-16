@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-//import Com from './com';
 import GridTickets from "./components/GridTickets";
 import * as serviceWorker from "./serviceWorker";
 import { Grid } from "@material-ui/core";

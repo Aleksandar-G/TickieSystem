@@ -1,9 +1,6 @@
 package com.tickieSystem.tickieSystem.controller;
 
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
 import com.tickieSystem.tickieSystem.db.remote.UserRepository;
 import com.tickieSystem.tickieSystem.db.remote.User_TicketsRepository;
@@ -12,13 +9,12 @@ import com.tickieSystem.tickieSystem.db.remote.models.User;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
 import com.tickieSystem.tickieSystem.security.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

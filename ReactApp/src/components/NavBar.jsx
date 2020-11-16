@@ -52,8 +52,8 @@ function NavBar() {
         <SecuredRoute path="/profile">
           <Profile />
         </SecuredRoute>
-        <Route path="/login">
-          <Login />
+        <Route path="/login" render={props => (<Login {...props} />)}>
+
         </Route>
         <SecuredRoute path="/addticket">
           <AddTicket />

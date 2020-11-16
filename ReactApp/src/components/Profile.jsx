@@ -1,7 +1,4 @@
 import axios from "axios";
-//import GridTickets from './GridTickets'
-import { Grid } from '@material-ui/core';
-import ProfileGridTicket from './ProfileGridTicket';
 import AdminProfile from './AdminProfile';
 import NormalProfile from './NormalProfile';
 
