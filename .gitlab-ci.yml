@@ -2,7 +2,7 @@ build:
   stage: build
   script:
     - cd tickieSystem
-    - gradlew build
+    - ./gradlew build
 
 
 
