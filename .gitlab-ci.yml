@@ -12,7 +12,7 @@ build:
 test:
   stage: test
   script:
-    - cd ../ReactApp/
+    - cd ReactApp/
     - npm test
 
 after_script:
