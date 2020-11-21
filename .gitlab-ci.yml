@@ -3,7 +3,7 @@ build:
   script:
     - cd tickieSystem
     - ls
-    - ./gradlew build
+    - ./gradlew assemble
 
 
 
