@@ -69,9 +69,9 @@ class LoginComponent extends Component {
                     {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
                     {this.state.showSuccessMessage && <div className="alert alert-success">Login Sucessful</div>}
                     
-                    User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-                    Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-                    <button className="btn btn-success" onClick={this.loginClicked}>Login</button>
+                    User Name: <input data-testid="usernameLogin" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                    Password: <input data-testid="passwordLogin" type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                    <button data-testid="buttonLogin" className="btn btn-success" onClick={this.loginClicked}>Login</button>
                 </div>
             </div>
         )
