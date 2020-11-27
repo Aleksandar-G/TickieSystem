@@ -1,8 +1,6 @@
 package com.tickieSystem.tickieSystem.db.remote;
 
-import org.jvnet.hk2.annotations.Service;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.User;
 
 import java.util.Optional;
