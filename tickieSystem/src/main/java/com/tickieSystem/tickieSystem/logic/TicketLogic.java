@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 
-public class TicketController {
+public class TicketLogic {
     
-    public TicketController(){};
+    public TicketLogic(){};
     
     public static List<Ticket> ArrangeTicketsByPriority(List<Ticket> tickets){
 
