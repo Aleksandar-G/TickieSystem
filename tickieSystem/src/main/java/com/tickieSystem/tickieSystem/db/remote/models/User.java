@@ -5,6 +5,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
+
+    public User(){
+
+
+    }
+
+    public User(String name, String level) {
+        this.name = name;
+        this.level = level;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

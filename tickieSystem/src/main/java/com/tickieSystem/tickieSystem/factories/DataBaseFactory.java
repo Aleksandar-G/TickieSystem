@@ -1,15 +1,10 @@
 package com.tickieSystem.tickieSystem.factories;
 
-import com.tickieSystem.tickieSystem.db.IDataAccessLayer;
-import com.tickieSystem.tickieSystem.db.db;
-
-import javax.validation.constraints.NotNull;
-
 public class DataBaseFactory {
 
     public DataBaseFactory(){
     }
-@NotNull
+/*@NotNull
     public static IDataAccessLayer GetDatabase(String database){
          IDataAccessLayer db = new db();
             if (database.equals("remote")){
@@ -26,5 +21,5 @@ public class DataBaseFactory {
             }
 
             return db;
-    }
+    }*/
 }
