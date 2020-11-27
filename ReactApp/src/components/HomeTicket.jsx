@@ -5,7 +5,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import AssignTicketService from '../Service/AssignTicketService'
 import axios from 'axios';
 
 const useStyles = makeStyles({
@@ -53,7 +52,7 @@ export default function HomeTicket(props) {
           DueDate: {props.ticket.duedate}
         </Typography>
         <Typography variant="body2" component="p">
-          PriorotyLevel: <b>{props.ticket.priority}</b>
+          PriorityLevel: <b>{props.ticket.priority}</b>
           <br />
           DifficultyLevel: <b>{props.ticket.difficulty}</b>
         </Typography>

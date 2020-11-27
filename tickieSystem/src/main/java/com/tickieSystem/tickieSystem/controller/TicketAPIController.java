@@ -33,10 +33,10 @@ public class TicketAPIController {
         CorsFilter filter = new CorsFilter();
         return filter;
     }*/
+//jUnit
 
     @Autowired
     CorsFilter corsFilter;
-
 
     @Autowired
     private TicketRepository ticketRepository;
