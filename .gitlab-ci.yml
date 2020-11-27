@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - sonarQube
 
 build:
   stage: build
@@ -15,6 +16,12 @@ test:
     - cd ReactApp/
     - npm install
     - npm test
+
+sonarQube:
+  stage: sonarQube
+  script:
+    - cd tickieSystem
+    - ./gradlew sonarqube    
 
 after_script:
   - echo "End CI"
