@@ -24,7 +24,8 @@ class AddTicket extends Component {
             description: description,
             priority: priority,
             duedate: duedate,
-            difficulty: difficulty
+            difficulty: difficulty,
+            open : 0
           })
 
           event.target.parentNode.elements.duedate.value = null;

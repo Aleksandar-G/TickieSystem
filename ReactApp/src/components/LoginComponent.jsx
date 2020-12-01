@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, useHistory } from 'react-router-dom';
 import AuthenticationService from '../Service/AuthenticationService';
+import '../styles/addTicket.css';
 
 class LoginComponent extends Component {
 

@@ -28,6 +28,23 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
+    public boolean claimTicket(Integer ticketId){
+        try {
+            Ticket ticketToClose = GetTicketFromOptional(ticketRepository.findById(ticketId));
+            if (ticketToClose.isClaimed() == false) {
+                ticketToClose.setClaimed(true);
+               // ticketRepository.deleteById(ticketId);
+                ticketRepository.save(ticketToClose);
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception ex){
+            return false;
+        }
+    }
+
+
     private Ticket GetTicketFromOptional(Optional<Ticket> optTicket){
 
         if (optTicket.isPresent()){
@@ -38,5 +55,7 @@ public class TicketService {
             throw new IllegalArgumentException("User not found");
         }
     }
+
+
 
 }

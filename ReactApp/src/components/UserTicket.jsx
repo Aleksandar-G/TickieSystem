@@ -27,8 +27,8 @@ const useStyles = makeStyles({
 });
 
 
-/*const doit = function(ticketId,username){
-  axios.post( 'http://localhost:8080/db/tickets/assign', {
+const closeTicket = function(ticketId,username){
+  axios.post( 'http://localhost:8080/db/tickets/close', {
     ticketId: ticketId,
     username: username
   })
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   .catch(function (error) {
     console.log(error);
   });
-}*/
+}
 
 export default function HomeTicket(props) {
   const classes = useStyles();
@@ -63,10 +63,8 @@ export default function HomeTicket(props) {
       </CardContent>
       <CardActions>
        
-        <Button size="small" /*onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}*/>Close Ticket</Button>
+        <Button size="small" onClick={() => closeTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}>Close Ticket</Button>
       </CardActions>
     </Card>
   );
 }
-
-//onClick={AssignTicketService.assignTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"))} 

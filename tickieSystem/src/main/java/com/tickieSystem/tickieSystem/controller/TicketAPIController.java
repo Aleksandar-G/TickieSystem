@@ -1,18 +1,22 @@
 package com.tickieSystem.tickieSystem.controller;
 
+import com.tickieSystem.tickieSystem.db.remote.CloseTicketsRepository;
 import com.tickieSystem.tickieSystem.db.remote.UserRepository;
 import com.tickieSystem.tickieSystem.db.remote.User_TicketsRepository;
+import com.tickieSystem.tickieSystem.db.remote.models.CloseTicket;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import com.tickieSystem.tickieSystem.db.remote.models.User;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
 import com.tickieSystem.tickieSystem.security.CorsFilter;
 import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
+import com.tickieSystem.tickieSystem.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -22,7 +26,7 @@ import java.util.stream.StreamSupport;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/db") // This means URL's start with /demo (after Application
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 
 public class TicketAPIController {
 
@@ -37,6 +41,9 @@ public class TicketAPIController {
     CorsFilter corsFilter;
 
     @Autowired
+    TicketService ticketService;
+
+    @Autowired
     private TicketRepository ticketRepository;
 
     @Autowired
@@ -45,40 +52,39 @@ public class TicketAPIController {
     @Autowired
     private User_TicketsRepository user_TicketsRepository;
 
+    @Autowired
+    private CloseTicketsRepository closeTicketsRepository;
+
     @GetMapping(path="/tickets/all")
     public @ResponseBody Iterable<Ticket> getAllTickets() {
         // This returns a JSON or XML with the users
-        return ticketRepository.findAll();
+        List<Ticket> tickets = (List<Ticket>) ticketRepository.findAll();
+        tickets = tickets.stream().filter(x -> !x.isClaimed()).sorted(Comparator.comparing(x -> x.getDuedate())).collect(Collectors.toList());
+        return tickets;
     }
-    /*@GetMapping(value="/tickets")
-    public @ResponseBody  Optional<Ticket> getTicket(@RequestParam(value = "id", required = false)String id) {
-        // This returns a JSON or XML with the users
-        Optional<Ticket> res = null;
 
-        if (id != null){
-           res = ticketRepository.findById(Integer.parseInt(id));
-        }else{
-            res = ticketRepository.findById(1);
-        }
-        return  res;
-    }*/
     @GetMapping(value="/tickets")
-    public @ResponseBody List<Ticket> getTicketsForUser(@RequestParam(value = "username", required = false)String username) {
+    public @ResponseBody List<Ticket> getTicketsForUser(@RequestParam(value = "username", required = true)String username) {
         // This returns a JSON or XML with the users
 
         User u = getUserByUsername(username);
 
         List<User_tickets> ut = user_TicketsRepository.findAllByUserid(u.getId());
         //assert ut != null;
-        List<Integer> utInt = ut.stream().map(User_tickets::getId).collect(Collectors.toList());
+        List<Integer> utInt = ut.stream().map(User_tickets::getTicket_id).collect(Collectors.toList());
         Iterable<Integer>ticketIds = utInt;
         Iterable<Ticket>ticketsForUser = ticketRepository.findAllById(ticketIds);
         List<Ticket> res = StreamSupport.stream(ticketsForUser.spliterator(),false).collect(Collectors.toList());
         return res;
     }
     @PostMapping(path = "/tickets/add")
-    public void addTicket(@RequestBody Ticket ticket){
-        ticketRepository.save(ticket);
+    public ResponseEntity addTicket(@RequestBody Ticket ticket){
+        try {
+            ticketService.saveTicket(ticket);
+            return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        }catch(Exception exception){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
     @PostMapping(path = "/tickets/assign")
@@ -92,6 +98,7 @@ public class TicketAPIController {
            User user = u.get();
            User_tickets entry = new User_tickets(user.getId(),ticketId);
            user_TicketsRepository.save(entry);
+           ticketService.claimTicket(ticketId);
        }
        else{
            throw new IllegalArgumentException("User not found");
@@ -108,6 +115,23 @@ public class TicketAPIController {
         }else{
             return false;
         }
+   }
+
+   @PostMapping(path = "/tickets/close")
+   public ResponseEntity closeTicket(@RequestBody Map<String, String> infoCloseticket){
+
+        Integer userId = getUserByUsername(infoCloseticket.get("username").toString()).getId();
+        Integer ticketId = Integer.parseInt(infoCloseticket.get("ticketId"));
+       CloseTicket ct = new CloseTicket(userId,ticketId);
+
+       try {
+            closeTicketsRepository.save(ct);
+            //user_TicketsRepository.deleteById();
+           user_TicketsRepository.deleteByUseridAndTicketid(userId,ticketId);
+           return ResponseEntity.status(HttpStatus.CREATED).body(null);
+       }catch (Exception ex){
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+       }
    }
 
    private User getUserByUsername(String username){

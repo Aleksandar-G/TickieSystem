@@ -35,6 +35,7 @@ import NormalProfile from './NormalProfile';
 export default Profile;*/
 
 import React, { Component } from 'react';
+import ArrangeTickets from "./ArrangeTickets";
 
 class Profile extends Component {
 
@@ -51,7 +52,7 @@ class Profile extends Component {
   }
 
   render() {
-    debugger;
+
     if (this.state.role == "admin") {
       return <AdminProfile />
     }

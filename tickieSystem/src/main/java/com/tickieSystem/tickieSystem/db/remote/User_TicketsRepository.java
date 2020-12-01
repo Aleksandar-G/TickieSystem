@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface User_TicketsRepository extends JpaRepository<User_tickets,Integer> {
 
     List<User_tickets> findAllByUserid(Integer userid);
+    void deleteByUseridAndTicketid(Integer userid , Integer ticketId);
 
 }

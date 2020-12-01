@@ -15,6 +15,15 @@ public class Ticket {
     private String priority;
     private Date duedate;
     private String difficulty;
+    private boolean claimed;
+
+    public boolean isClaimed() {
+        return claimed;
+    }
+
+    public void setClaimed(boolean claimed) {
+        this.claimed = claimed;
+    }
 
     public Ticket() {
 

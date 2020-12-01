@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
-import { Grid } from '@material-ui/core';
-import ProfileGridTicket from './ProfileGridTicket';
+import { Grid } from "@material-ui/core";
+import ProfileGridTicket from "./ProfileGridTicket";
+import { Link } from 'react-router-dom'
 
 /*class Profile extends React.Component {
 
@@ -35,18 +36,21 @@ import ProfileGridTicket from './ProfileGridTicket';
 
 export default Profile;*/
 
-
 export default function AdminProfile() {
-    return (
-        <div>
-            <div>
-                <button>Add Ticket</button>
-            </div>
-            <div>
-                <Grid container spacing={2}>
-                    <ProfileGridTicket />
-                </ Grid>
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <div>
+        <button>
+          <Link to="/addticket">
+            <li className="nav-item nav-link">addticket</li>
+          </Link>
+        </button>
+      </div>
+      <div>
+        <Grid container spacing={2}>
+          <ProfileGridTicket />
+        </Grid>
+      </div>
+    </div>
+  );
 }

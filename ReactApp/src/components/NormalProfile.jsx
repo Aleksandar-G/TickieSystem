@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import { Grid } from '@material-ui/core';
 import ProfileGridTicket from './ProfileGridTicket';
+import ArrangeTickets from './ArrangeTickets';
 
 /*class Profile extends React.Component {
 
@@ -38,10 +39,13 @@ export default Profile;*/
 
 export default function AdminProfile() {
     return (
+<div>
+<div> <ArrangeTickets/></div>
             <div>
                 <Grid container spacing={2}>
                     <ProfileGridTicket />
                 </ Grid>
+            </div>
             </div>
     )
 }
