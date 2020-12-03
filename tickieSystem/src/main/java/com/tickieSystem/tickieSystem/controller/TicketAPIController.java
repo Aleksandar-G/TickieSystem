@@ -1,14 +1,12 @@
 package com.tickieSystem.tickieSystem.controller;
 
-import com.tickieSystem.tickieSystem.db.remote.CloseTicketsRepository;
-import com.tickieSystem.tickieSystem.db.remote.UserRepository;
-import com.tickieSystem.tickieSystem.db.remote.User_TicketsRepository;
-import com.tickieSystem.tickieSystem.db.remote.models.CloseTicket;
+import com.tickieSystem.tickieSystem.db.remote.*;
+import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import com.tickieSystem.tickieSystem.db.remote.models.User;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
+import com.tickieSystem.tickieSystem.logic.TicketLogic;
 import com.tickieSystem.tickieSystem.security.CorsFilter;
-import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
 import com.tickieSystem.tickieSystem.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,10 +48,15 @@ public class TicketAPIController {
     private UserRepository userRepository;
 
     @Autowired
+    private ClosedTicketsRepository closedticketsRepository;
+
+    @Autowired
     private User_TicketsRepository user_TicketsRepository;
 
     @Autowired
-    private CloseTicketsRepository closeTicketsRepository;
+    TicketLogic ticketLogic;
+
+
 
     @GetMapping(path="/tickets/all")
     public @ResponseBody Iterable<Ticket> getAllTickets() {
@@ -122,17 +125,31 @@ public class TicketAPIController {
 
         Integer userId = getUserByUsername(infoCloseticket.get("username").toString()).getId();
         Integer ticketId = Integer.parseInt(infoCloseticket.get("ticketId"));
-       CloseTicket ct = new CloseTicket(userId,ticketId);
+       /*CloseTicket ct = new CloseTicket(userId,ticketId);
+       closeTicketsRepository.saveAndFlush(ct);*/
+       ClosedTicket ct = new ClosedTicket(ticketId,userId);
+
 
        try {
-            closeTicketsRepository.save(ct);
-            //user_TicketsRepository.deleteById();
+           closedticketsRepository.save(ct);
            user_TicketsRepository.deleteByUseridAndTicketid(userId,ticketId);
            return ResponseEntity.status(HttpStatus.CREATED).body(null);
        }catch (Exception ex){
            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
        }
    }
+
+   @GetMapping(path = "tickets/order")
+   public @ResponseBody List<Ticket> orderTickets(@RequestParam(value = "order", required = true)String order,String username) {
+
+        List<Ticket> userTickets = getTicketsForUser(username);
+
+       userTickets = ticketLogic.ArrangeTicketsByPriority(userTickets);
+
+       return  userTickets;
+
+   }
+
 
    private User getUserByUsername(String username){
 

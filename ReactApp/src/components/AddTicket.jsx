@@ -8,7 +8,6 @@ class AddTicket extends Component {
     constructor(props){
     super(props);
 
-    //this.addTicket = this.addTicket.bind(this);
     this.addticket = this.addticket.bind(this);
     }
 
@@ -45,16 +44,16 @@ class AddTicket extends Component {
                     <input className="textInput" type="date" id="duedate" name="duedate"></input>
                     <label for="Priority">Priority</label>
                     <select className="textInput" id="priority" name="priority">
-                        <option value="Intern">High</option>
+                        <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
                     </select>
 
                     <label for="difficulty">Difficulty</label>
                     <select className="textInput" id="difficulty" name="difficulty">
-                        <option value="intern">Intern</option>
-                        <option value="junior">Junior</option>
-                        <option value="senior">Senior</option>
+                        <option value="Intern">Intern</option>
+                        <option value="Junior">Junior</option>
+                        <option value="Senior">Senior</option>
                     </select>
                     <label for="description">Description</label>
                     <textarea className="textInput descriptionTB" input="text" id="description" name="description"></textarea>

@@ -1,51 +1,41 @@
-import React from 'react';
-import axios from "axios";
-import { Grid } from '@material-ui/core';
-import ProfileGridTicket from './ProfileGridTicket';
-import ArrangeTickets from './ArrangeTickets';
+import React from "react";
+import { Grid } from "@material-ui/core";
+import ProfileGridTicket from "./ProfileGridTicket";
 
-/*class Profile extends React.Component {
+
+export default class NormalProfile extends React.Component {
 
   constructor(props) {
-    super();
+    super(props);
 
-    this.state = {
-        tickets: []
-    };
+    this.profileGridTicket = React.createRef();
   }
 
-      componentDidMount(){
-        if(props.choose == "user")
-        axios.get('http://localhost:8080/db/tickets?username='+sessionStorage.getItem("authenticatedUser")).then((res) =>  {this.setState({tickets: res.data})})
-      }
+  orderTickets = (event) => {
+    let orderValue = document.querySelector('input[name="order"]:checked').value;
+    this.profileGridTicket.current.changeOrder(orderValue);
+  }
 
-    render() {
-      <Grid container spacing={2}></Grid>
-        let tickets = [];
-        console.log("state"+this.state.tickets.length);
-        //tickets.push(<Grid container spacing={2}>);
-        for (let index = 0; index < this.state.tickets.length; index++) {
-          console.log(this.state.tickets[index])
-          tickets.push(<Grid item xs = {6} sm = {4}  md = {3}><Card ticket= {this.state.tickets[index]}></Card> </Grid>);
-        }
-        
-            return tickets;
-
-    }
-}
-
-export default Profile;*/
-
-
-export default function AdminProfile() {
+  render() {
     return (
-<div>
-<div> <ArrangeTickets/></div>
-            <div>
-                <Grid container spacing={2}>
-                    <ProfileGridTicket />
-                </ Grid>
-            </div>
-            </div>
+      <div>
+      <div>
+        <input type="radio" id="selectByDate" name="order" value="duedate"></input>
+        <label >Order by duedate</label><br />
+        <input type="radio" id="selectByDifficulty" name="order" value="difficulty"></input>
+        <label >order by difficulty</label> <br />
+        <input type="radio" id="selectByPriority" name="order" value="priority"></input>
+        <label >order by priority</label> <br />
+        <button type="submit" onClick={this.orderTickets} value="Submit">Select</button>
+      </div>
+        <div>
+          <Grid container spacing={2}>
+            <ProfileGridTicket ref={this.profileGridTicket} />
+          </Grid>
+        </div>
+      </div>
     )
+  }
 }
+
+
