@@ -1,7 +1,9 @@
 package com.tickieSystem.tickieSystem.service;
 
 
+import com.tickieSystem.tickieSystem.db.remote.ClosedTicketsRepository;
 import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
+import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ public class TicketService {
 
     @Autowired
     TicketRepository ticketRepository;
+
+    @Autowired
+    ClosedTicketsRepository closedTicketsRepository;
 
     public Iterable<Ticket> findAll(){
         return ticketRepository.findAll();
@@ -43,6 +48,8 @@ public class TicketService {
             return false;
         }
     }
+
+    public void saveClosedTicket(ClosedTicket closeticket){closedTicketsRepository.save(closeticket);}
 
 
     private Ticket GetTicketFromOptional(Optional<Ticket> optTicket){

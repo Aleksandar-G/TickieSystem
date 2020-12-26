@@ -5,7 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
+import instance from '../Service/AxiosService';
 import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 
 
 const doit = function(ticketId,username){
-  axios.post( 'http://localhost:8080/db/tickets/assign', {
+  instance.post( 'http://localhost:8080/db/tickets/assign', {
     ticketId: ticketId,
     username: username
   })

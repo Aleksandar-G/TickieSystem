@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "axios";
+import instance from '../Service/AxiosService';
 import Ticket from './Ticket';
 import { Grid } from '@material-ui/core';
 
@@ -16,7 +16,7 @@ class GridTickets extends React.Component {
 
   componentDidMount() {
    
-      axios.get('http://localhost:8080/db/tickets/all').then((res) => { this.setState({ tickets: res.data }) })
+    instance.get('http://localhost:8080/db/tickets/all').then((res) => { this.setState({ tickets: res.data }) })
   
   }
 

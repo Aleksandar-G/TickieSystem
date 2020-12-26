@@ -1,9 +1,19 @@
-import React, { Component } from 'react'
+import React, { useState, Component} from 'react'
 import { Redirect, useHistory } from 'react-router-dom';
 import AuthenticationService from '../Service/AuthenticationService';
-import '../styles/addTicket.css';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-class LoginComponent extends Component {
+/*class LoginComponent extends Component {
 
     constructor(props) {
         super(props)
@@ -44,6 +54,7 @@ class LoginComponent extends Component {
        // let history = useHistory();
        // let location = useLocation();
        // let auth = useAuth();
+       debugger;
 
        AuthenticationService
             .executeBasicAuthenticationService(this.state.username, this.state.password)
@@ -79,4 +90,120 @@ class LoginComponent extends Component {
     }
 }
 
-export default LoginComponent
+export default LoginComponent*/
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }));
+
+
+  let loginProps = Object;
+
+
+  
+  
+  export default function LoginComponent(props) {
+    const classes = useStyles();
+
+    const [username, setusername] = useState("test");
+    const [password, setPassword] = useState("pass");
+    const [error, setError] = useState();
+
+   // loginProps = props;
+
+    const reset = () => {
+
+        
+        let username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        setusername(username);
+        setPassword(password);
+        loginClicked({username}.username,{password}.password);
+    }
+
+    const loginClicked = (username,password) => {
+        AuthenticationService.executeBasicAuthenticationService(username, password)
+        .then(() => {
+            AuthenticationService.registerSuccessfulLogin(username, password).then(props.history.push('/'));
+    
+            //this.setState({ showSuccessMessage:true })
+    
+        }).catch((error) => {
+            console.log(error);
+            setError("error");
+            //this.setState({ hasLoginFailed: true })
+        })
+    
+      }
+    
+
+
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form} noValidate>
+          {}
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => reset()}
+              
+            >
+              Hello
+            </Button>
+          </form>
+        </div>
+      </Container>
+    );
+  }

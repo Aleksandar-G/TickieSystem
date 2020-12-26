@@ -1,4 +1,4 @@
-import axios from "axios";
+import instance from '../Service/AxiosService';
 import AdminProfile from './AdminProfile';
 import NormalProfile from './NormalProfile';
 import React, { Component } from 'react';
@@ -15,7 +15,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/user/isadmin?username=" + sessionStorage.getItem("authenticatedUser")).then((res) => this.setState({role:res.data}))
+    instance.get("http://localhost:8080/user/isadmin?username=" + sessionStorage.getItem("authenticatedUser")).then((res) => this.setState({role:res.data}))
   }
 
   render() {

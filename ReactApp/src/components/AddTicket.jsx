@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import AuthenticationService from '../Service/AuthenticationService';
 import '../styles/addTicket.css';
+import instance from '../Service/AxiosService';
 
 class AddTicket extends Component {
 
@@ -19,7 +20,14 @@ class AddTicket extends Component {
         let difficulty = event.target.parentNode.elements.difficulty.value;
         let priority = event.target.parentNode.elements.priority.value;
 
-        axios.post('http://localhost:8080/db/tickets/add', {
+        /*axios.post('http://localhost:8080/db/tickets/add', {
+            description: description,
+            priority: priority,
+            duedate: duedate,
+            difficulty: difficulty,
+            open : 0
+          })*/
+          instance.post('http://localhost:8080/db/tickets/add', {
             description: description,
             priority: priority,
             duedate: duedate,

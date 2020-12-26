@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from "axios";
+import instance from '../Service/AxiosService';
 import Ticket from './Ticket';
 import { Grid } from '@material-ui/core';
 
@@ -15,7 +15,7 @@ export default class ProfileGridTicket extends Component {
       }
 
     componentDidMount(){
-        axios.get('http://localhost:8080/db/tickets?username='+sessionStorage.getItem("authenticatedUser")).then((res) =>  {this.setState({tickets: res.data})})
+      instance.get('http://localhost:8080/db/tickets?username='+sessionStorage.getItem("authenticatedUser")).then((res) =>  {this.setState({tickets: res.data})})
     }
 
     comparePriority = (a,b) =>{
