@@ -13,30 +13,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @Configuration
 @EnableWebSecurity
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
     UserDetailsService userDetailsService;
 
+   /* @Autowired
+    CorsFilter corsFilter;*/
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
-
-    /*@Bean
-    CorsFilter corsFilter() {
-        CorsFilter filter = new CorsFilter();
-        return filter;
-    }*/
-    @Autowired
-    CorsFilter corsFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
