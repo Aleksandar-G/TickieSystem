@@ -10,7 +10,6 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "ticketdescription")
     private String description;
     private String priority;
     private Date duedate;

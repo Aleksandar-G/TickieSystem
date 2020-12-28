@@ -25,7 +25,6 @@ import java.util.stream.StreamSupport;
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/db") // This means URL's start with /demo (after Application
 @CrossOrigin(origins = "http://localhost:3000")
-
 public class TicketAPIController {
 
     /*@Bean

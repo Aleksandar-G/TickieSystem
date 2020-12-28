@@ -11,8 +11,8 @@ export let authtoken = "";
 
 class AuthenticationService {
     
-
     executeBasicAuthenticationService(username, password) {
+        debugger;
         return axios.get(`${API_URL}/basicauth`,
             { headers: { authorization: this.createBasicAuthToken(username, password) } })
     }

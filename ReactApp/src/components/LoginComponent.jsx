@@ -138,6 +138,7 @@ const useStyles = makeStyles((theme) => ({
     }
 
     const loginClicked = (username,password) => {
+      debugger;
         AuthenticationService.executeBasicAuthenticationService(username, password)
         .then(() => {
             AuthenticationService.registerSuccessfulLogin(username, password).then(props.history.push('/'));
