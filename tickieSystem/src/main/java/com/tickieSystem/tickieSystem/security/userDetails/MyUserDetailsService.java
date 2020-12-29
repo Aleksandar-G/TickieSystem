@@ -19,11 +19,11 @@ public class MyUserDetailsService implements UserDetailsService{
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public JWTUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByname(username);
 
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
 
-        return user.map(MyUserDetails::new).get();
+        return user.map(JWTUserDetails::new).get();
     }
 }

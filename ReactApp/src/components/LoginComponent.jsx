@@ -138,8 +138,7 @@ const useStyles = makeStyles((theme) => ({
     }
 
     const loginClicked = (username,password) => {
-      debugger;
-        AuthenticationService.executeBasicAuthenticationService(username, password)
+        /*AuthenticationService.executeBasicAuthenticationService(username, password)
         .then(() => {
             AuthenticationService.registerSuccessfulLogin(username, password).then(props.history.push('/'));
     
@@ -149,6 +148,16 @@ const useStyles = makeStyles((theme) => ({
             console.log(error);
             setError("error");
             //this.setState({ hasLoginFailed: true })
+        })*/
+        AuthenticationService.executeJwtAuthenticationService(username, password)
+        .then((response) => {
+            AuthenticationService.registerSuccessfulLoginForJwt(username, response.data.token).then(props.history.push(`/`))
+            
+        }).catch(() => {
+           // this.setState({ showSuccessMessage: false })
+            //this.setState({ hasLoginFailed: true })
+            //console.log(error);
+            setError("error");
         })
     
       }

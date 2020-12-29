@@ -19,6 +19,7 @@ class AuthenticationService {
 
     executeJwtAuthenticationService(username, password) {
         console.log(username);
+        //debugger;
         return axios.post(`${API_URL}/authenticate`, {
             username,
             password
@@ -44,9 +45,12 @@ class AuthenticationService {
     registerSuccessfulLoginForJwt(username, token) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
         this.setupAxiosInterceptors(this.createJWTToken(token))
+        setup();
+        return Promise.resolve(3);
     }
 
     createJWTToken(token) {
+        sessionStorage.setItem("token",'Bearer ' + token);
         return 'Bearer ' + token
     }
 
