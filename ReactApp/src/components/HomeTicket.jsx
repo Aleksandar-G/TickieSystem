@@ -30,17 +30,21 @@ const useStyles = makeStyles({
 });
 
 
-const doit = function(ticketId,username){
+const doit = function(ticketId,username,update){
+  console.log("asdasdasd");
   instance.post( 'http://localhost:8080/db/tickets/assign', {
     ticketId: ticketId,
     username: username
   })
   .then(function (response) {
     console.log(response);
+    update();
   })
   .catch(function (error) {
     console.log(error);
   });
+
+  
 }
 
 export default function HomeTicket(props) {
@@ -65,7 +69,7 @@ export default function HomeTicket(props) {
         </Typography>
       </CardContent>
       <CardActions> 
-        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}>Claim Ticket</Button>
+        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"),props.grid)}>Claim Ticket</Button>
       </CardActions>
     </Card>
   );

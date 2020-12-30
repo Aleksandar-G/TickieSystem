@@ -9,7 +9,7 @@ export default function ticket(props) {
       return <UserTicket ticket ={props.ticket} />
     }
     else if (props.for == "home") {
-      return <HomeTicket ticket ={props.ticket}></HomeTicket>
+      return <HomeTicket ticket ={props.ticket} grid ={props.grid} ></HomeTicket>
     }
 
 }
