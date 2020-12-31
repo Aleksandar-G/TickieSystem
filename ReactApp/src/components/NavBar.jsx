@@ -13,6 +13,8 @@ import Login from './LoginComponent';
 import SecuredRoute from './SecuredRoute';
 import AddTicket from '../components/AddTicket';
 import Profile from './Profile';
+import ChatComponent from './ChatComponent';
+import ChatTest from './ChatTest';
 
 function NavBar() {
 
@@ -51,6 +53,10 @@ function NavBar() {
         </Route>
         <SecuredRoute path="/addticket">
           <AddTicket />
+        </SecuredRoute>
+
+        <SecuredRoute path="/chat">
+          <ChatComponent />
         </SecuredRoute>
 
       </Switch>
