@@ -1,4 +1,5 @@
 import axios from 'axios'
+import instance,{setup} from '../Service/AxiosService';
 
 const API_URL = 'http://localhost:8080'
 
@@ -6,15 +7,19 @@ export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 
 export let authtoken = "";
 
-class AuthenticationService {
 
+
+class AuthenticationService {
+    
     executeBasicAuthenticationService(username, password) {
+        debugger;
         return axios.get(`${API_URL}/basicauth`,
             { headers: { authorization: this.createBasicAuthToken(username, password) } })
     }
 
     executeJwtAuthenticationService(username, password) {
         console.log(username);
+        //debugger;
         return axios.post(`${API_URL}/authenticate`, {
             username,
             password
@@ -33,15 +38,19 @@ class AuthenticationService {
         //console.log('registerSuccessfulLogin')
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
         this.setupAxiosInterceptors(this.createBasicAuthToken(username, password))
+        setup()
         return Promise.resolve(3);
     }
 
     registerSuccessfulLoginForJwt(username, token) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
         this.setupAxiosInterceptors(this.createJWTToken(token))
+        setup();
+        return Promise.resolve(3);
     }
 
     createJWTToken(token) {
+        sessionStorage.setItem("token",'Bearer ' + token);
         return 'Bearer ' + token
     }
 
@@ -71,8 +80,7 @@ class AuthenticationService {
                 return config
             }
         )
-        console.log("12312312323");
     }
 }
 
-export default new AuthenticationService()
+export default new AuthenticationService();

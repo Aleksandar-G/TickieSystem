@@ -22,7 +22,7 @@ function NavBar() {
   return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand">Navbar</a>
+        <a className="navbar-brand">LOGO</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -33,12 +33,6 @@ function NavBar() {
       </li></Link>
             <Link to="/profile"><li className="nav-item nav-link">
               Profile
-      </li></Link>
-      <Link to="/login"><li className="nav-item nav-link">
-              Login
-      </li></Link>
-      <Link to="/addticket"><li className="nav-item nav-link">
-              addticket
       </li></Link>
           </ul>
 

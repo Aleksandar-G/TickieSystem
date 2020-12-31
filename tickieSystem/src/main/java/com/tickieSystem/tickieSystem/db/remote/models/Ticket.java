@@ -10,11 +10,19 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "ticketdescription")
     private String description;
     private String priority;
     private Date duedate;
     private String difficulty;
+    private boolean claimed;
+
+    public boolean isClaimed() {
+        return claimed;
+    }
+
+    public void setClaimed(boolean claimed) {
+        this.claimed = claimed;
+    }
 
     public Ticket() {
 

@@ -5,7 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
+import instance from '../Service/AxiosService';
+import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
   root: {
@@ -22,21 +23,28 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  color: {
+    color: grey,
+  },
 
 });
 
 
-const doit = function(ticketId,username){
-  axios.post( 'http://localhost:8080/db/tickets/assign', {
+const doit = function(ticketId,username,update){
+  console.log("asdasdasd");
+  instance.post( 'http://localhost:8080/db/tickets/assign', {
     ticketId: ticketId,
     username: username
   })
   .then(function (response) {
     console.log(response);
+    update();
   })
   .catch(function (error) {
     console.log(error);
   });
+
+  
 }
 
 export default function HomeTicket(props) {
@@ -44,7 +52,7 @@ export default function HomeTicket(props) {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <CardContent>
+      <CardContent className={classes.color}>
         <Typography variant="h5" component="h2">
           {props.ticket.id}
         </Typography>
@@ -61,7 +69,7 @@ export default function HomeTicket(props) {
         </Typography>
       </CardContent>
       <CardActions> 
-        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}>Assign Ticket</Button>
+        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"),props.grid)}>Claim Ticket</Button>
       </CardActions>
     </Card>
   );

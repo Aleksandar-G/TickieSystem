@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "axios";
+import instance from '../Service/AxiosService';
 import Ticket from './Ticket';
 import { Grid } from '@material-ui/core';
 
@@ -16,8 +16,14 @@ class GridTickets extends React.Component {
 
   componentDidMount() {
    
-      axios.get('http://localhost:8080/db/tickets/all').then((res) => { this.setState({ tickets: res.data }) })
+    instance.get('http://localhost:8080/db/tickets/all').then((res) => { this.setState({ tickets: res.data }) })
   
+  }
+
+  update = () => {
+    console.log("eto");
+    this.componentDidMount();
+    this.forceUpdate();
   }
 
   render() {
@@ -25,7 +31,7 @@ class GridTickets extends React.Component {
     console.log(this.state.tickets.length);
     for (let index = 0; index < this.state.tickets.length; index++) {
       console.log(this.state.tickets[index])
-      tickets.push(<Grid item xs={6} sm={4} md={3}><Ticket for="home" ticket={this.state.tickets[index]}></Ticket> </Grid>);
+      tickets.push(<Grid item xs={6} sm={4} md={3}><Ticket for="home" ticket={this.state.tickets[index]} grid={this.update}></Ticket> </Grid>);
     }
     return tickets;
   }

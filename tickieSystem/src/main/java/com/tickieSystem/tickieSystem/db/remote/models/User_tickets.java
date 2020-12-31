@@ -1,21 +1,19 @@
 package com.tickieSystem.tickieSystem.db.remote.models;
 
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_tickets")
 public class User_tickets {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
     private Integer userid;
     private Integer ticketid;
 
-    public User_tickets(Integer user_id, Integer ticket_id) {
-        this.userid = user_id;
-        this.ticketid = ticket_id;
+    public User_tickets(Integer userid, Integer ticketid) {
+        this.userid = userid;
+        this.ticketid = ticketid;
     }
 
     public Integer getUser_id() {
