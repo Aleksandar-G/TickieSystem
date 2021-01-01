@@ -55,6 +55,9 @@ public class TicketAPIController {
     @Autowired
     TicketLogic ticketLogic;
 
+    @Autowired
+    ClosedTicketsRepository closedTicketsRepository;
+
 
 
     @GetMapping(path="/tickets/all")
@@ -147,6 +150,15 @@ public class TicketAPIController {
 
        return  userTickets;
 
+   }
+
+   @GetMapping(path = "tickets/close")
+   public List<ClosedTicket> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
+        User u = this.getUserByUsername(username);
+
+        List<ClosedTicket> closedTicketsForUsers = closedTicketsRepository.findAllbyUserid(u.getId());
+
+        return closedTicketsForUsers;
    }
 
 
