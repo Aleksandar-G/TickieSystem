@@ -181,6 +181,7 @@ const useStyles = makeStyles((theme) => ({
               required
               fullWidth
               id="username"
+              data-testid="usernameLogin"
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -195,6 +196,7 @@ const useStyles = makeStyles((theme) => ({
               label="Password"
               type="password"
               id="password"
+              data-testid="passwordLogin"
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -206,6 +208,7 @@ const useStyles = makeStyles((theme) => ({
               fullWidth
               variant="contained"
               color="primary"
+              data-testid="buttonLogin"
               className={classes.submit}
               onClick={() => reset()}
               
