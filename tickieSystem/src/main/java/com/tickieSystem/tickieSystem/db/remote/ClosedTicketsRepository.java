@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ClosedTicketsRepository extends JpaRepository<ClosedTicket, Integer> {
 
-    List<ClosedTicket> findAllbyUserid(Integer userId);
+    //List<ClosedTicket> findAllbyUserid(Integer userId);
 }
