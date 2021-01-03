@@ -12,15 +12,13 @@ export let authtoken = "";
 class AuthenticationService {
     
     executeBasicAuthenticationService(username, password) {
-        debugger;
         return axios.get(`${API_URL}/basicauth`,
             { headers: { authorization: this.createBasicAuthToken(username, password) } })
     }
 
     executeJwtAuthenticationService(username, password) {
         console.log(username);
-        //debugger;
-        return axios.post(`${API_URL}/authenticate`, {
+        return instance.post(`${API_URL}/authenticate`, {
             username,
             password
         })
@@ -43,6 +41,7 @@ class AuthenticationService {
     }
 
     registerSuccessfulLoginForJwt(username, token) {
+        //debugger;
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
         this.setupAxiosInterceptors(this.createJWTToken(token))
         setup();
