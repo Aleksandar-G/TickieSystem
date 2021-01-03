@@ -36,7 +36,7 @@ public class TicketService {
     public boolean claimTicket(Integer ticketId){
         try {
             Ticket ticketToClose = GetTicketFromOptional(ticketRepository.findById(ticketId));
-            if (ticketToClose.isClaimed() == false) {
+            if (!ticketToClose.isClaimed()) {
                 ticketToClose.setClaimed(true);
                // ticketRepository.deleteById(ticketId);
                 ticketRepository.save(ticketToClose);

@@ -152,14 +152,14 @@ public class TicketAPIController {
 
    }
 
-   @GetMapping(path = "tickets/close")
+  /* @GetMapping(path = "tickets/close")
    public List<ClosedTicket> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
         User u = this.getUserByUsername(username);
 
         List<ClosedTicket> closedTicketsForUsers = closedTicketsRepository.findAllbyUserid(u.getId());
 
         return closedTicketsForUsers;
-   }
+   }*/
 
 
    private User getUserByUsername(String username){
