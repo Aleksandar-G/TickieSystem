@@ -39,6 +39,7 @@ function NavBar() {
 
         </div>
       </nav>
+      <br/>
       <Switch>
         
         <SecuredRoute exact path="/">

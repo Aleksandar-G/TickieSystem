@@ -69,7 +69,7 @@ export default function HomeTicket(props) {
         </Typography>
       </CardContent>
       <CardActions> 
-        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"),props.grid)}>Claim Ticket</Button>
+        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"), props.grid)}>Claim Ticket</Button>
       </CardActions>
     </Card>
   );

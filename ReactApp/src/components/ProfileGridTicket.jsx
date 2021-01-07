@@ -52,7 +52,7 @@ export default class ProfileGridTicket extends Component {
     }
 
     update = () => {
-      console.log("eto2");
+      console.log("etobeee");
       this.componentDidMount();
       this.forceUpdate();
     }
