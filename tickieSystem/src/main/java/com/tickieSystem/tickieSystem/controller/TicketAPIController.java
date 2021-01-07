@@ -105,23 +105,11 @@ public class TicketAPIController {
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
-   @GetMapping(path = "user/isadmin")
-    public boolean userIsAdmin(@RequestBody String username){
-        User u = getUserByUsername(username);
-        if (u.getLevel().equals("senior")){
-            return true;
-        }else{
-            return false;
-        }
-   }
-
    @PostMapping(path = "/tickets/close")
    public ResponseEntity closeTicket(@RequestBody Map<String, String> infoCloseticket){
 
         Integer userId = getUserByUsername(infoCloseticket.get("username").toString()).getId();
         Integer ticketId = Integer.parseInt(infoCloseticket.get("ticketId"));
-       /*CloseTicket ct = new CloseTicket(userId,ticketId);
-       closeTicketsRepository.saveAndFlush(ct);*/
        ClosedTicket ct = new ClosedTicket(ticketId,userId);
 
 
@@ -146,14 +134,15 @@ public class TicketAPIController {
    }
 
 
-   /*@GetMapping(path = "tickets/close")
+
+   @GetMapping(path = "tickets/close")
    public List<ClosedTicket> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
         User u = this.getUserByUsername(username);
 
-        List<ClosedTicket> closedTicketsForUsers = closedTicketsRepository.findAllbyUserid(u.getId());
+        List<ClosedTicket> closedTicketsForUsers = closedTicketsRepository.findAllByUserid(u.getId());
 
         return closedTicketsForUsers;
-   }*/
+   }
 
 
    private User getUserByUsername(String username){

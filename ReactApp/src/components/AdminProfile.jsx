@@ -37,18 +37,42 @@ import { Link } from 'react-router-dom'
 export default Profile;*/
 
 export default function AdminProfile() {
+
+  const profileGridTicket = React.createRef();
+
+
+  const orderTickets = (event) => {
+
+    let orderValue = document.querySelector('input[name="order"]:checked').value;
+    profileGridTicket.current.changeOrder(orderValue);
+  }
+
   return (
     <div>
       <div>
-        <button>
+        <button> 
           <Link to="/addticket">
             <li className="nav-item nav-link">addticket</li>
           </Link>
         </button>
+        <button> 
+          <Link to="/adduser">
+            <li className="nav-item nav-link">add new user</li>
+          </Link>
+        </button>
+      </div>
+      <div>
+        <input type="radio" id="selectByDate" name="order" value="duedate"></input>
+        <label >Order by duedate</label><br />
+        <input type="radio" id="selectByDifficulty" name="order" value="difficulty"></input>
+        <label >order by difficulty</label> <br />
+        <input type="radio" id="selectByPriority" name="order" value="priority"></input>
+        <label >order by priority</label> <br />
+        <button type="submit" onClick={orderTickets} value="Submit">Select</button>
       </div>
       <div>
         <Grid container spacing={2}>
-          <ProfileGridTicket />
+          <ProfileGridTicket ref={profileGridTicket}/>
         </Grid>
       </div>
     </div>

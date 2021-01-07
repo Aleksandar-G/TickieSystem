@@ -4,16 +4,19 @@ package com.tickieSystem.tickieSystem.controller;
 import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
 import com.tickieSystem.tickieSystem.db.remote.UserRepository;
 import com.tickieSystem.tickieSystem.db.remote.User_TicketsRepository;
+import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import com.tickieSystem.tickieSystem.db.remote.models.User;
 import com.tickieSystem.tickieSystem.security.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/user")
+@RequestMapping(path="db/user/")
 public class UserAPIController {
 
     @Autowired
@@ -40,6 +43,16 @@ public class UserAPIController {
       else{
           return "user";
       }
+    }
+
+    @PostMapping(path = "add")
+    public ResponseEntity addTicket(@RequestBody User user){
+        try {
+            userRepository.save(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        }catch(Exception exception){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
     private User getUserByUsername(String username){

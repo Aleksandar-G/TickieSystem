@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import ProfileGridTicket from "./ProfileGridTicket";
+import OrderTickets from "./OrderTickets";
 
 
 export default class NormalProfile extends React.Component {
@@ -12,6 +13,7 @@ export default class NormalProfile extends React.Component {
   }
 
   orderTickets = (event) => {
+
     let orderValue = document.querySelector('input[name="order"]:checked').value;
     this.profileGridTicket.current.changeOrder(orderValue);
   }

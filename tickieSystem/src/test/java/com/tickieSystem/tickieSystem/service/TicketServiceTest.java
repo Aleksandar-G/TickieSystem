@@ -44,8 +44,6 @@ class TicketServiceTest {
     @Test
     void findAll() {
 
-
-
         when(ticketRepository.findAll()).thenReturn(testData);
 
         assertEquals(3, ((List<Ticket>) ticketService.findAll()).size());

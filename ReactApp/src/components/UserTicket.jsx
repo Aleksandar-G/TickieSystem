@@ -63,7 +63,7 @@ export default function HomeTicket(props) {
       </CardContent>
       <CardActions>
        
-        <Button size="small" onClick={() => closeTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}>Close Ticket</Button>
+        <Button size="small" onClick={() => closeTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"), props.grid)}>Close Ticket</Button>
       </CardActions>
     </Card>
   );

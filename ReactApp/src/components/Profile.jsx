@@ -15,7 +15,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    instance.get("http://localhost:8080/user/isadmin?username=" + sessionStorage.getItem("authenticatedUser")).then((res) => this.setState({role:res.data}))
+    instance.get("http://localhost:8080/db/user/isadmin?username=" + sessionStorage.getItem("authenticatedUser")).then((res) => this.setState({role:res.data}))
   }
 
   render() {

@@ -50,6 +50,12 @@ export default class ProfileGridTicket extends Component {
 
       this.forceUpdate();
     }
+
+    update = () => {
+      console.log("eto2");
+      this.componentDidMount();
+      this.forceUpdate();
+    }
     
 
     render() {
@@ -57,7 +63,7 @@ export default class ProfileGridTicket extends Component {
             let tickets = [];
             for (let index = 0; index < this.state.tickets.length; index++) {
               console.log(this.state.tickets[index])
-              tickets.push(<Grid item xs={6} sm={4} md={3}><Ticket for="user" ticket={this.state.tickets[index]}></Ticket> </Grid>);
+              tickets.push(<Grid item xs={6} sm={4} md={3}><Ticket for="user" ticket={this.state.tickets[index]} grid={this.update}></Ticket> </Grid>);
             }
             return tickets;
         

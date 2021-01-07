@@ -13,6 +13,7 @@ import Login from './LoginComponent';
 import SecuredRoute from './SecuredRoute';
 import AddTicket from '../components/AddTicket';
 import Profile from './Profile';
+import AddUser from './AddUser';
 
 function NavBar() {
 
@@ -51,6 +52,10 @@ function NavBar() {
         </Route>
         <SecuredRoute path="/addticket">
           <AddTicket />
+        </SecuredRoute>
+
+        <SecuredRoute path="/adduser">
+          <AddUser />
         </SecuredRoute>
 
       </Switch>
