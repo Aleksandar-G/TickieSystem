@@ -154,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
             AuthenticationService.registerSuccessfulLoginForJwt(username, response.data.token).then(props.history.push(`/`))
             
         }).catch(() => {
-           // this.setState({ showSuccessMessage: false })
+            //this.setState({ showSuccessMessage: false })
             //this.setState({ hasLoginFailed: true })
             //console.log(error);
             setError("error");
@@ -174,7 +174,7 @@ const useStyles = makeStyles((theme) => ({
             Sign in
           </Typography>
           <form className={classes.form} noValidate>
-          {}
+          {error && <div className="alert alert-warning">Invalid Credentials</div>}
             <TextField
               variant="outlined"
               margin="normal"
@@ -199,10 +199,6 @@ const useStyles = makeStyles((theme) => ({
               data-testid="passwordLogin"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="button"
               fullWidth
@@ -213,7 +209,7 @@ const useStyles = makeStyles((theme) => ({
               onClick={() => reset()}
               
             >
-              Hello
+              Login
             </Button>
           </form>
         </div>
