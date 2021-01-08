@@ -8,6 +8,7 @@ import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,13 @@ public class TicketService {
         Optional<Ticket> optionalTicket =  ticketRepository.findById(id);
 
         return GetTicketFromOptional(optionalTicket);
+    }
+
+    public Iterable<Ticket> findAllbyId(Iterable<Integer> id){
+
+        Iterable<Ticket> optionalTicket =  ticketRepository.findAllById(id);
+
+        return optionalTicket;
     }
 
     public void saveTicket(Ticket ticket){

@@ -16,6 +16,12 @@ public class User {
         this.level = level;
     }
 
+    public User(String name, String password, String level) {
+        this.name = name;
+        this.password = password;
+        this.level = level;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

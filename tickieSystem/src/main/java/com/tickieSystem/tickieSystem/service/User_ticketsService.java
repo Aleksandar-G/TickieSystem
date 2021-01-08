@@ -3,9 +3,11 @@ package com.tickieSystem.tickieSystem.service;
 import com.tickieSystem.tickieSystem.db.remote.User_TicketsRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class User_ticketsService {
 
     @Autowired

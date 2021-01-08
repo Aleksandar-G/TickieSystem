@@ -5,7 +5,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import AssignTicketService from '../Service/AssignTicketService'
 import instance from '../Service/AxiosService';
 
 const useStyles = makeStyles({
@@ -27,13 +26,14 @@ const useStyles = makeStyles({
 });
 
 
-const closeTicket = function(ticketId,username){
+const closeTicket = function(ticketId,username,update){
   instance.post( 'http://localhost:8080/db/tickets/close', {
     ticketId: ticketId,
     username: username
   })
   .then(function (response) {
     console.log(response);
+    update();
   })
   .catch(function (error) {
     console.log(error);
@@ -62,8 +62,7 @@ export default function HomeTicket(props) {
         </Typography>
       </CardContent>
       <CardActions>
-       
-        <Button size="small" onClick={() => closeTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"))}>Close Ticket</Button>
+        <Button size="small" onClick={() => closeTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"), props.grid)}>Close Ticket</Button>
       </CardActions>
     </Card>
   );
