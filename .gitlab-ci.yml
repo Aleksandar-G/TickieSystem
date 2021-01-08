@@ -21,7 +21,6 @@ testBackEnd:
   stage: testBackEnd
   script:
     - cd tickieSystem
-    - ./gradlew test
 
 testFrontEnd:
   stage: testFrontEnd
