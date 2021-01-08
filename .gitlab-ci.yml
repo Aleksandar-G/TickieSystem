@@ -19,7 +19,7 @@ testBackEnd:
   stage: test
   script:
     - cd tickieSystem
-    - ./gradlew test
+    - ./gradlew check
 
 testFrontEnd:
   stage: test
