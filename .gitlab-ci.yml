@@ -17,7 +17,7 @@ buildFrontEnd:
   script:
     - cd ReactApp/
     - npm install
-    - npm start
+    - npm run build
 
 testBackEnd:
   stage: testBackEnd
