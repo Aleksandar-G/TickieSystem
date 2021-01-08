@@ -1,4 +1,3 @@
 # TickieSystem
 
-Is a ticketing system of a software company.
-TickieSystem is going to be Web based app with authorising and authentication and hierarchy of 3 types of users
+TickieSystem jira like tickeing system. It is a Web based app with authentication and authorization. Is uses React for front end and Spring boot for back end frameworks. 
