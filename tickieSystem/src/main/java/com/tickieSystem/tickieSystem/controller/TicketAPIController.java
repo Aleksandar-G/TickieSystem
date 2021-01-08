@@ -7,7 +7,10 @@ import com.tickieSystem.tickieSystem.db.remote.models.User;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
 import com.tickieSystem.tickieSystem.logic.TicketLogic;
 import com.tickieSystem.tickieSystem.security.CorsFilter;
+import com.tickieSystem.tickieSystem.service.CloseTicketService;
 import com.tickieSystem.tickieSystem.service.TicketService;
+import com.tickieSystem.tickieSystem.service.UserService;
+import com.tickieSystem.tickieSystem.service.User_ticketsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,29 +37,22 @@ public class TicketAPIController {
     TicketService ticketService;
 
     @Autowired
-    private TicketRepository ticketRepository;
+    UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
+    CloseTicketService closeTicketService;
 
     @Autowired
-    private ClosedTicketsRepository closedticketsRepository;
+    User_ticketsService user_ticketsService;
 
-    @Autowired
-    private User_TicketsRepository user_TicketsRepository;
 
-    @Autowired
-    TicketLogic ticketLogic;
-
-    @Autowired
-    ClosedTicketsRepository closedTicketsRepository;
 
 
 
     @GetMapping(path="/tickets/all")
     public @ResponseBody Iterable<Ticket> getAllTickets() {
         // This returns a JSON or XML with the users
-        List<Ticket> tickets = (List<Ticket>) ticketRepository.findAll();
+        List<Ticket> tickets = (List<Ticket>) ticketService.findAll();
         tickets = tickets.stream().filter(x -> !x.isClaimed()).sorted(Comparator.comparing(x -> x.getDuedate())).collect(Collectors.toList());
         return tickets;
     }
@@ -67,11 +63,11 @@ public class TicketAPIController {
 
         User u = getUserByUsername(username);
 
-        List<User_tickets> ut = user_TicketsRepository.findAllByUserid(u.getId());
+        List<User_tickets> ut = user_ticketsService.findallByuserId(u.getId());
         //assert ut != null;
         List<Integer> utInt = ut.stream().map(User_tickets::getTicket_id).collect(Collectors.toList());
         Iterable<Integer>ticketIds = utInt;
-        Iterable<Ticket>ticketsForUser = ticketRepository.findAllById(ticketIds);
+        Iterable<Ticket>ticketsForUser = ticketService.findAllbyId(ticketIds);
         List<Ticket> res = StreamSupport.stream(ticketsForUser.spliterator(),false).collect(Collectors.toList());
         return res;
     }
@@ -90,16 +86,16 @@ public class TicketAPIController {
 
        String username = utObj.get("username").toString();
        Integer ticketId = Integer.parseInt(utObj.get("ticketId").toString());
-        Optional<User> u = userRepository.findByname(username);
+        User u = userService.findbyUsername(username);
 
-       if (u.isPresent()){
-           User user = u.get();
-           User_tickets entry = new User_tickets(user.getId(),ticketId);
-           user_TicketsRepository.save(entry);
+       if (u.getName() != null){
+           User_tickets entry = new User_tickets(u.getId(),ticketId);
+           user_ticketsService.save(entry);
            ticketService.claimTicket(ticketId);
        }
        else{
-           throw new IllegalArgumentException("User not found");
+           //throw new IllegalArgumentException("User not found");
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
        }
 
         return ResponseEntity.status(HttpStatus.OK).body(null);
@@ -114,8 +110,8 @@ public class TicketAPIController {
 
 
        try {
-           closedticketsRepository.save(ct);
-           user_TicketsRepository.deleteByUseridAndTicketid(userId,ticketId);
+           closeTicketService.save(ct);
+           user_ticketsService.deleteByUseridAndTicketid(userId,ticketId);
            return ResponseEntity.status(HttpStatus.CREATED).body(null);
        }catch (Exception ex){
            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -127,19 +123,18 @@ public class TicketAPIController {
 
         List<Ticket> userTickets = getTicketsForUser(username);
 
-       userTickets = ticketLogic.ArrangeTicketsByPriority(userTickets);
+       //userTickets = ticketLogic.ArrangeTicketsByPriority(userTickets);
 
        return  userTickets;
 
    }
 
 
-
    @GetMapping(path = "tickets/close")
    public List<ClosedTicket> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
         User u = this.getUserByUsername(username);
 
-        List<ClosedTicket> closedTicketsForUsers = closedTicketsRepository.findAllByUserid(u.getId());
+        List<ClosedTicket> closedTicketsForUsers = closeTicketService.findAllByUserid(u.getId());
 
         return closedTicketsForUsers;
    }
@@ -147,7 +142,7 @@ public class TicketAPIController {
 
    private User getUserByUsername(String username){
 
-       Optional<User> u = userRepository.findByname(username);
+       Optional<User> u = userService.findByname(username);
 
        if (u.isPresent()){
            User user = u.get();

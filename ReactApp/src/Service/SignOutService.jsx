@@ -1,7 +1,6 @@
 import React ,{useEffect} from 'react'
 import { Redirect } from 'react-router-dom';
 import instance from "./AxiosService"
-import AuthenticationService from '../Service/AuthenticationService'
 
 export default function SignOutService() {
 
@@ -13,8 +12,6 @@ export default function SignOutService() {
         sessionStorage.removeItem('token');  
         instance.defaults.headers.common['Authorization'] = "";
         sessionStorage.removeItem('authenticatedUser');
-        
-        
       }
 
     return (

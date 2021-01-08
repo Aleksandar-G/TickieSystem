@@ -3,11 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  NavLink
+  Link
 } from "react-router-dom";
-import App from '../App';
-import About from '../About'
 import Home from './Home'
 import Login from './LoginComponent';
 import SecuredRoute from './SecuredRoute';

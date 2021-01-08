@@ -26,6 +26,12 @@ public class UserService {
         return GetUserFromOptional(optionalUser);
     }
 
+    public Optional<User> findByname(String username){
+        Optional<User> optionalUser =  userRepository.findByname(username);
+
+        return optionalUser;
+    }
+
     public void saveTicket(User user){
         userRepository.save(user);
     }

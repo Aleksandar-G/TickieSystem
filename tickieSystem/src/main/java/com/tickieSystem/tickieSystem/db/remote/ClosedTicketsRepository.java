@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+
 public interface ClosedTicketsRepository extends JpaRepository<ClosedTicket, Integer> {
 
     List<ClosedTicket> findAllByUserid(Integer userId);

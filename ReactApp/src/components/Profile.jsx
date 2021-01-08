@@ -2,7 +2,6 @@ import instance from '../Service/AxiosService';
 import AdminProfile from './AdminProfile';
 import NormalProfile from './NormalProfile';
 import React, { Component } from 'react';
-import ArrangeTickets from "./ArrangeTickets";
 
 class Profile extends Component {
 

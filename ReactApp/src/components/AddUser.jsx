@@ -1,4 +1,4 @@
-import React, { Component ,useState} from 'react';
+import React, {useState} from 'react';
 import '../styles/addTicket.css';
 import instance from '../Service/AxiosService';
 import bcrypt from 'bcryptjs';
@@ -34,31 +34,25 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-
-
   
 
 export default function AddUser() {
 
   const classes = useStyles();
 
-  //const [email, setEmail] = useState('');
   const [name, setName] = useState('')
   const [level, setLevel] = useState('');
   const [password, setPassword] = useState('');
 
   const handlelevelChange = (event) => {
-    //console.log(event.target.value);
+
     setLevel(event.target.value);
   };
 
 
   const handleNameChange = (e) => {
-    //console.log(e.target.value);
 
     setName(e.target.value);
-    //setLevel(e.target.value);
-    //setPassword(e.target.value);
   }
 
   const handlePasswordChange = (e) => {
