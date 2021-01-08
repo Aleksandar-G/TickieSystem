@@ -1,20 +1,43 @@
 stages:
-  - build
-  - test
+  - buildBackEnd
+  - buildFrontEnd
+  - testBackEnd
+  - testFrontEnd
+  - sonarqube
 
-build:
-  stage: build
+buildBackEnd:
+  stage: buildBackEnd
   script:
     - cd tickieSystem
     - ls
     - ./gradlew assemble
 
-test:
-  stage: test
+buildFrontEnd:
+  stage: buildFrontEnd
+  script:
+    - cd ReactApp/
+    - npm install
+    - npm start
+
+testBackEnd:
+  stage: testBackEnd
+  script:
+    - cd tickieSystem
+    - ./gradlew test
+
+testFrontEnd:
+  stage: testFrontEnd
   script:
     - cd ReactApp/
     - npm install
     - npm test
+
+sonarqube:
+   stage: sonarqube
+   script:
+    - cd tickieSystem
+    - ./gradlew sonarqube
+
   
 
 after_script:
