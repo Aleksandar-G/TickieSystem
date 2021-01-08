@@ -28,16 +28,8 @@ public class UserAPIController {
     CorsFilter corsFilter;
 
     @Autowired
-    private TicketRepository ticketRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
-    @Autowired
-    private User_TicketsRepository user_TicketsRepository;
 
     @GetMapping(path="/isadmin")
     @ResponseBody
@@ -56,7 +48,7 @@ public class UserAPIController {
     @PostMapping(path = "add")
     public ResponseEntity addTicket(@RequestBody User user){
         try {
-            userRepository.save(user);
+            userService.saveTicket(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
         }catch(Exception exception){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -77,7 +69,7 @@ public class UserAPIController {
 
     private User getUserByUsername(String username){
 
-        Optional<User> u = userRepository.findByname(username);
+        Optional<User> u = userService.findByname(username);
 
         if (u.isPresent()){
             User user = u.get();

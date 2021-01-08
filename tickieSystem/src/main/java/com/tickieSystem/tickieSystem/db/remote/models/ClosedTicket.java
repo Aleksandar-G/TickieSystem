@@ -14,9 +14,17 @@ public class ClosedTicket {
     public ClosedTicket() {
     }
 
+
+
     public ClosedTicket(Integer ticketid, Integer userid) {
         this.ticketid = ticketid;
         this.userid = userid;
+
+
+    }
+
+    public int getId() {
+        return Id;
     }
 
     public Integer getTicketid() {
