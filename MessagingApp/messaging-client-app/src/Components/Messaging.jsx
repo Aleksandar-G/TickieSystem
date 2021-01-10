@@ -79,6 +79,8 @@ export default function Messaging() {
       setmessages(messages.push(message));
 
       console.log("archive:" + messages);
+
+      <Message message/>
   
   
     }
