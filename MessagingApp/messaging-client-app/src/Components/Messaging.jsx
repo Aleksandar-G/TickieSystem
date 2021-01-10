@@ -1,49 +1,23 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import { positions } from '@material-ui/system';
+import Message from '../Message';
 
 
-const connect = (userName) => {
 
-    userName = "test";
+let stompClient = null;
 
-    if (userName) {
 
-      const Stomp = require('stompjs')
 
-      let SockJS = require('sockjs-client')
 
-      SockJS = new SockJS('/ws')
 
-      stompClient = Stomp.over(SockJS);
-
-      stompClient.connect({}, this.onConnected, this.onError);
-
-      this.setState({
-        username: userName,
-      })
-    }
-  }
-
-  const onConnected = () => {
-
-    this.setState({
-      channelConnected: true
-    })
-
-    // Subscribing to the public topic
-    stompClient.subscribe('/topic/pubic', this.onMessageReceived);
-
-    // Registering user to server as a public chat user
-    stompClient.send("/app/addUser", {}, JSON.stringify({ sender: this.state.username, type: 'JOIN' }))
-
-  }
 
   const onError = (error) => {
-    this.setState({
-      error: 'Could not connect you to the Chat Room Server. Please refresh this page and try again!'
-    })
+    
   }
 
 const useStyles = makeStyles((theme) => ({
@@ -55,21 +29,107 @@ const useStyles = makeStyles((theme) => ({
 
     },
     textField: {
-        position: "relative",
+        position: "absolute",
+        float:"left", 
+        top:"84vh",
+        width:'80%'
+    },
+    button:{
+      position: "absolute",
         float:"right", 
         top:"84vh",
-        width:'100%'
-    },
+        width:'20%',
+        height:'6vh',
+    }
   }));
 
+
 export default function Messaging() {
+
+  const [message, setMessage] = useState('')
+
+  const [messages, setmessages] = useState([])
+
+  const connect = (userName) => {
+
+    userName = "test";
+
+    if (userName) {
+
+      const Stomp = require('stompjs')
+
+      let SockJS = require('sockjs-client')
+
+      SockJS = new SockJS('http://localhost:8080/ws')
+
+      stompClient = Stomp.over(SockJS);
+
+      console.log(stompClient);
+
+      stompClient.connect({}, onConnected, onError);
+
+    }
+  }
+
+  const onMessageReceived = (payload) => {
+    if (payload) {
+      
+      let message = JSON.parse(payload.body);
+
+      setmessages(messages.push(message));
+
+      console.log("archive:" + messages);
+  
+  
+    }
+      
+   }
+
+  const onConnected = () => {
+
+    // Subscribing to the public topic
+    stompClient.subscribe('/topic/pubic', onMessageReceived);
+  
+    // Registering user to server as a public chat user
+    stompClient.send("/app/addUser", {}, JSON.stringify({ sender:'test' ,message:'JOIN' }))
+  
+  }
+
+  const sendMessage = () => {
+    if (stompClient) {
+      let chatMessage = {
+        sender: "test",
+        message: message
+  
+      };
+
+      // send public message
+      stompClient.send("/app/sendMessage", {}, JSON.stringify(chatMessage));
+
+      setMessage('');
+
+    }
+  }
+
+  const handleMessageChange =(event) =>{
+
+    setMessage(event.target.value)
+  }
+
+  useEffect(() => {
+    connect("test");
+  },[])
+
+  
 
     const classes = useStyles();
 
     return (
         <div>
         <Paper elevation={3} className={classes.container}>
-        <TextField className={classes.textField} id="filled-basic" label="Filled" variant="filled" />
+        <Message />
+        <TextField zIndex="tooltip" onChange={(event) => handleMessageChange(event)} className={classes.textField} id="filled-basic" label="Filled" variant="filled" />
+        <Button zIndex="modal" className={classes.button} variant="outlined" color="primary" onClick={() => sendMessage()}>Send</Button>
         </Paper>
         </div>
     )
