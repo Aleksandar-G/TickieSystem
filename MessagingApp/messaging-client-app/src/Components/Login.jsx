@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -31,10 +31,15 @@ const useStyles = makeStyles((theme) => ({
   export default function Login() {
     const classes = useStyles();
 
-    const login = (event) => {
-        sessionStorage.setItem("user",event.target.value);
-        <Redirect to="/chat"/>
+    const [username, setusername] = useState('')
 
+    const login = (event) => {
+        sessionStorage.setItem("user",username);
+        console.log(username);
+    }
+
+    const HandleChange = (e) =>{
+      setusername(e.target.value)
     }
   
     return (
@@ -55,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => HandleChange(e)}
             />
             <Button
               type="button"
@@ -64,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
               className={classes.submit}
               onClick={(event) => login(event)}
             >
+            <Link to="/chat"> LOGIN </Link>
             </Button>
           </form>
         </div>

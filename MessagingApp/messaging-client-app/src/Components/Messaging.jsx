@@ -4,11 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { positions } from '@material-ui/system';
-import Message from '../Components/Message';
 import RenderMessages from '../Components/RenderMessages';
-import { render } from 'react-dom';
-
 
 
 let stompClient = null;
@@ -57,6 +53,7 @@ export default function Messaging() {
   let [messageCount, setmessageCount] = useState(0);
   const [messages, setmessages] = useState([]);
   const [newMessage, setNewMessage] = useState({});
+  let [username, setusername] = useState('')
 
   
 
@@ -64,7 +61,8 @@ export default function Messaging() {
 
   const connect = (userName) => {
 
-    userName = "test";
+    userName = sessionStorage.getItem("user");
+    setusername(userName);
 
     if (userName) {
 
@@ -112,14 +110,14 @@ export default function Messaging() {
     stompClient.subscribe('/topic/pubic', onMessageReceived);
   
     // Registering user to server as a public chat user
-    stompClient.send("/app/addUser", {}, JSON.stringify({ sender:'test' ,message:'JOIN' }))
+    stompClient.send("/app/addUser", {}, JSON.stringify({ sender: sessionStorage.getItem("user") ,message:'JOIN' }))
   
   }
 
   const sendMessage = () => {
     if (stompClient) {
       let chatMessage = {
-        sender: "test",
+        sender: username,
         message: newMessage
   
       };
@@ -137,11 +135,12 @@ export default function Messaging() {
   }
 
   useEffect(() => {
-    connect("test");
+    setusername(sessionStorage.getItem("user").toString())
+    connect(username);
+
   },[])
 
   useEffect(() => {
-    console.log("aide de");
 
   }, [messageCount])
 

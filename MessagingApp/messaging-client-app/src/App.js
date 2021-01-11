@@ -6,13 +6,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-
-      <Login/>
-
       <Router>
+ 
+
+
       <Switch>
           <Route path="/chat">
             <Messaging />
+            </Route>
+            <Route exact path="/">
+            <Login/>
             </Route>
         </Switch>
         </Router>
