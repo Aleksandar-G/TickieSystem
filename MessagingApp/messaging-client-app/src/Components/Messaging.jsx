@@ -5,16 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { positions } from '@material-ui/system';
-import Message from '../Message';
+import Message from '../Components/Message';
 
 
 
 let stompClient = null;
-
-
-
-
-
 
   const onError = (error) => {
     
@@ -78,10 +73,9 @@ export default function Messaging() {
 
       setmessages(messages.push(message));
 
-      console.log("archive:" + messages);
+      console.log(messages[0]);
 
-      <Message message/>
-  
+      
   
     }
       
@@ -129,7 +123,9 @@ export default function Messaging() {
     return (
         <div>
         <Paper elevation={3} className={classes.container}>
-        <Message />
+        <Grid container spacing={3}>
+        <Message messages={message} />
+        </Grid>
         <TextField zIndex="tooltip" onChange={(event) => handleMessageChange(event)} className={classes.textField} id="filled-basic" label="Filled" variant="filled" />
         <Button zIndex="modal" className={classes.button} variant="outlined" color="primary" onClick={() => sendMessage()}>Send</Button>
         </Paper>
