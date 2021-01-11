@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { positions } from '@material-ui/system';
 import Message from '../Components/Message';
+import RenderMessages from '../Components/RenderMessages';
+import { render } from 'react-dom';
 
 
 
@@ -20,30 +22,45 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3),
       minWidth: 120,
       boxSizing: 'border-box',
-      height: '90vh'
+      height: '80vh',
+      zIndex: '-1'
+      
 
     },
     textField: {
-        position: "absolute",
+        position: "relative",
+        marginLeft:theme.spacing(3),
         float:"left", 
-        top:"84vh",
-        width:'80%'
+        width:'78%',
+        zIndex: '1'
     },
     button:{
-      position: "absolute",
+      position: "relative",
         float:"right", 
-        top:"84vh",
-        width:'20%',
-        height:'6vh',
+        marginRight:theme.spacing(3),
+        width:'18%',
+        zIndex: '1',
+        padding: theme.spacing(2)
+    },
+    div:{
+      position: "absolute",
+      backgroundColor: 'grey',
+      float:'right',
+      width:'100%',
+      marginRight:theme.spacing(3)
     }
   }));
 
 
 export default function Messaging() {
 
-  const [message, setMessage] = useState('')
+  let [messageCount, setmessageCount] = useState(0);
+  const [messages, setmessages] = useState([]);
+  const [newMessage, setNewMessage] = useState({});
 
-  const [messages, setmessages] = useState([])
+  
+
+
 
   const connect = (userName) => {
 
@@ -71,12 +88,20 @@ export default function Messaging() {
       
       let message = JSON.parse(payload.body);
 
-      setmessages(messages.push(message));
+      setNewMessage(message);
+      setmessageCount(messageCount++);
 
-      console.log(messages[0]);
+      let m = newMessage;
+      let a = messages;
 
-      
-  
+      let ah = messages;
+      ah.push(message);
+
+      ah.forEach(element => {
+        setmessages([...messages,{element}]);
+      });
+
+   
     }
       
    }
@@ -95,26 +120,30 @@ export default function Messaging() {
     if (stompClient) {
       let chatMessage = {
         sender: "test",
-        message: message
+        message: newMessage
   
       };
-
       // send public message
       stompClient.send("/app/sendMessage", {}, JSON.stringify(chatMessage));
 
-      setMessage('');
+      setNewMessage('');
 
     }
   }
 
   const handleMessageChange =(event) =>{
 
-    setMessage(event.target.value)
+    setNewMessage(event.target.value)
   }
 
   useEffect(() => {
     connect("test");
   },[])
+
+  useEffect(() => {
+    console.log("aide de");
+
+  }, [messageCount])
 
   
 
@@ -124,11 +153,12 @@ export default function Messaging() {
         <div>
         <Paper elevation={3} className={classes.container}>
         <Grid container spacing={3}>
-        <Message messages={message} />
+        <RenderMessages messages={messages} />
         </Grid>
-        <TextField zIndex="tooltip" onChange={(event) => handleMessageChange(event)} className={classes.textField} id="filled-basic" label="Filled" variant="filled" />
-        <Button zIndex="modal" className={classes.button} variant="outlined" color="primary" onClick={() => sendMessage()}>Send</Button>
         </Paper>
+
+        <TextField onChange={(event) => handleMessageChange(event)} className={classes.textField} id="filled-basic" label="Filled" variant="filled" />
+        <Button className={classes.button} variant="outlined" color="primary" onClick={() => sendMessage()}>Send</Button>
         </div>
     )
 }
