@@ -1,12 +1,21 @@
 import Messaging from "./Components/Messaging";
 import Login from "./Components/Login";
-import { Router,Switch,Route } from "react-router-dom";
+import { Switch,Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
 
-      <Messaging/>
+      <Login/>
+
+      <Router>
+      <Switch>
+          <Route path="/chat">
+            <Messaging />
+            </Route>
+        </Switch>
+        </Router>
     </div>
   );
 }
