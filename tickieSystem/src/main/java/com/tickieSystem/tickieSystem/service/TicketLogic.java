@@ -1,4 +1,4 @@
-package com.tickieSystem.tickieSystem.logic;
+package com.tickieSystem.tickieSystem.service;
 
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TicketLogic {
+class TicketLogic {
     
     public TicketLogic(){};
     
