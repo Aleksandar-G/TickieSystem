@@ -34,15 +34,17 @@ export default function AdminProfile() {
   const profileGridTicket = React.createRef();
   const classes = useStyles();
 
-  const [value, setValue] = React.useState('');
-
   const handleChange = (event) => {
-  setValue(event.target.value);
-  orderTickets();
+
+
+  let order = event.target.value;
+  orderTickets(order);
+
   };
 
-  const orderTickets = () => {
-    profileGridTicket.current.changeOrder(value);
+  const orderTickets = (order) => {
+    //console.log(value);
+    profileGridTicket.current.changeOrder(order);
   };
 
   return (
@@ -64,7 +66,7 @@ export default function AdminProfile() {
       <div className={classes.marginTop}>
         <FormControl component="fieldset">
           <FormLabel component="legend">Order Tickets by:</FormLabel>
-          <RadioGroup aria-label="order Tickets" name="orderTickets" value={value} onChange={handleChange}>
+          <RadioGroup aria-label="order Tickets" name="orderTickets" onChange={handleChange}>
             <FormControlLabel
               value="duedate"
               control={<Radio color="primary" />}
