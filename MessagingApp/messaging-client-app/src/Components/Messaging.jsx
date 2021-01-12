@@ -155,7 +155,6 @@ export default function Messaging() {
         <RenderMessages messages={messages} />
         </Grid>
         </Paper>
-
         <TextField onChange={(event) => handleMessageChange(event)} className={classes.textField} id="filled-basic" label="Filled" variant="filled" />
         <Button className={classes.button} variant="outlined" color="primary" onClick={() => sendMessage()}>Send</Button>
         </div>
