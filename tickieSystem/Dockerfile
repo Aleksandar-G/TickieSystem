@@ -1,5 +1,5 @@
 FROM openjdk:latest
 EXPOSE 8080
-ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+ADD build/libs/tickieSystem-0.0.1-SNAPSHOT.jar tickieSystem-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/tickieSystem-0.0.1-SNAPSHOT.jar"]
