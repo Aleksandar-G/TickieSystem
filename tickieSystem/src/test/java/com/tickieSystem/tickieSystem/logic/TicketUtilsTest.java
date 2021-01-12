@@ -1,8 +1,10 @@
 package com.tickieSystem.tickieSystem.logic;
 
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
+import com.tickieSystem.tickieSystem.service.TicketUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TicketLogicTest {
+class TicketUtilsTest {
 
     List<Ticket> testData = new ArrayList<>();
 
@@ -18,14 +20,14 @@ class TicketLogicTest {
     Ticket t2 = new Ticket("test","Low",new Date(3),"Junior");
     Ticket t3 = new Ticket("test","Medium",new Date(2),"Intern");
 
-
-    TicketLogic ticketLogic;
+    @Autowired
+    TicketUtils ticketUtils;
 
 
     @BeforeEach
     void setUp() {
 
-        ticketLogic = new TicketLogic();
+        ticketUtils = new TicketUtils();
 
         testData.add(t1);
         testData.add(t2);
@@ -35,21 +37,21 @@ class TicketLogicTest {
     @Test
     void arrangeTicketsByPriority() {
 
-        List<Ticket> res = ticketLogic.ArrangeTicketsByPriority(testData);
+        List<Ticket> res = ticketUtils.ArrangeTicketsByPriority(testData);
 
         assertEquals(testData.get(0),res.get(0));
     }
 
     @Test
     void arrangeTicketsByDate() {
-        List<Ticket> res = ticketLogic.ArrangeTicketsByDate(testData);
+        List<Ticket> res = ticketUtils.ArrangeTicketsByDate(testData);
 
         assertEquals(testData.get(0),res.get(0));
     }
 
     @Test
     void getTicketsByDifficulty() {
-        List<Ticket> res = ticketLogic.GetTicketsByDifficulty(testData, "Intern");
+        List<Ticket> res = ticketUtils.GetTicketsByDifficulty(testData, "Intern");
 
         assertEquals(testData.get(2),res.get(0));
     }

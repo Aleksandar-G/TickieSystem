@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-class TicketLogic {
+public class TicketUtils {
     
-    public TicketLogic(){};
+    public TicketUtils(){};
     
     public  List<Ticket> ArrangeTicketsByPriority(List<Ticket> tickets){
 
