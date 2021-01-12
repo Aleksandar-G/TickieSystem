@@ -103,7 +103,8 @@ export default function AddUser() {
         <FormControl variant="outlined" fullWidth>
         <InputLabel htmlFor="outlined-age-native-simple" fullWidth>Level</InputLabel>
         <Select
-        variant="outlined"
+          id="level"
+          variant="outlined"
           native
           onChange={(e) => handlelevelChange(e)}
           label="Age"
@@ -134,6 +135,7 @@ export default function AddUser() {
             />
 
             <Button
+              id="btnAddUser"
               type="button"
               fullWidth
               variant="contained"

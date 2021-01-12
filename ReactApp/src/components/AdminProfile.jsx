@@ -48,7 +48,7 @@ export default function AdminProfile() {
   return (
     <div>
       <div>
-        <Button variant="contained" color="primary" size="Large">
+        <Button id="btnAddNewTicket" variant="contained" color="primary" size="Large">
           <Link className={classes.linkStyle} to="/addticket"> Add new Ticket </Link>
         </Button>
         <Button
@@ -56,6 +56,7 @@ export default function AdminProfile() {
           variant="contained"
           color="primary"
           size="Large"
+          id="btnAddNewUser"
         >
           <Link className={classes.linkStyle} to="/adduser"> Add new User </Link>
         </Button>

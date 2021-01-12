@@ -1,7 +1,7 @@
 
 describe("login-form", () => {
     beforeEach(() =>{
-        cy.visit('http://localhost:3000')
+        cy.visit('')
     })
 
     const usernameTest = "test";
@@ -33,7 +33,6 @@ describe("login-form", () => {
         cy.get('#loginButton').click()
 
         cy.wait('@authenticate').then((interception) => {
-            console.log(interception)
             expect(interception).property('response').to.have.property('body')
         })
 
