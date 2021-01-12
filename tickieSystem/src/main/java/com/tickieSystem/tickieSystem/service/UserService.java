@@ -1,8 +1,6 @@
 package com.tickieSystem.tickieSystem.service;
 
-import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
 import com.tickieSystem.tickieSystem.db.remote.UserRepository;
-import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import com.tickieSystem.tickieSystem.db.remote.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

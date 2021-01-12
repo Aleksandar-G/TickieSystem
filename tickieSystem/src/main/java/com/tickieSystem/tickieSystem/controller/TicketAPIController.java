@@ -1,11 +1,9 @@
 package com.tickieSystem.tickieSystem.controller;
 
-import com.tickieSystem.tickieSystem.db.remote.*;
 import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import com.tickieSystem.tickieSystem.db.remote.models.User;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
-import com.tickieSystem.tickieSystem.logic.TicketLogic;
 import com.tickieSystem.tickieSystem.security.CorsFilter;
 import com.tickieSystem.tickieSystem.service.CloseTicketService;
 import com.tickieSystem.tickieSystem.service.TicketService;

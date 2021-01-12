@@ -43,6 +43,7 @@ export default function AddUser() {
   const [name, setName] = useState('')
   const [level, setLevel] = useState('');
   const [password, setPassword] = useState('');
+  const [addedUser, setaddedUser] = useState(false)
 
   const handlelevelChange = (event) => {
 
@@ -71,6 +72,10 @@ export default function AddUser() {
       name: name,
       level: level,
       password: hash
+    }).then((res) => {
+      setaddedUser(true);
+    }).catch((err) =>{
+      alert("Try Again!")
     })
   }
 
@@ -82,7 +87,7 @@ export default function AddUser() {
             Add User
           </Typography>
           <form className={classes.form} noValidate>
-          {}
+          {addedUser && <div className="alert alert-success">User Added</div>}
             <TextField
               variant="outlined"
               margin="normal"
@@ -103,7 +108,8 @@ export default function AddUser() {
         <FormControl variant="outlined" fullWidth>
         <InputLabel htmlFor="outlined-age-native-simple" fullWidth>Level</InputLabel>
         <Select
-        variant="outlined"
+          id="level"
+          variant="outlined"
           native
           onChange={(e) => handlelevelChange(e)}
           label="Age"
@@ -134,6 +140,7 @@ export default function AddUser() {
             />
 
             <Button
+              id="btnAddUser"
               type="button"
               fullWidth
               variant="contained"

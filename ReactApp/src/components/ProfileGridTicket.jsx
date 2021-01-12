@@ -38,6 +38,7 @@ export default class ProfileGridTicket extends Component {
     }
 
     changeOrder = (order) => {
+      console.log("da vidim:" + order)
       if(order == "priority"){
       this.state.tickets.sort(this.comparePriority);
     }

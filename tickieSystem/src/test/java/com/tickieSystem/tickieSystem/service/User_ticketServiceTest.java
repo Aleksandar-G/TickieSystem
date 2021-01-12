@@ -1,16 +1,12 @@
 package com.tickieSystem.tickieSystem.service;
 
-import com.tickieSystem.tickieSystem.db.remote.ClosedTicketsRepository;
 import com.tickieSystem.tickieSystem.db.remote.User_TicketsRepository;
-import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;
-import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
