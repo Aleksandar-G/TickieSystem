@@ -27,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
         position: "relative",
         marginLeft:theme.spacing(3),
         float:"left", 
-        width:'78%',
+        width:'75%',
         zIndex: '1'
     },
     button:{
       position: "relative",
         float:"right", 
         marginRight:theme.spacing(3),
-        width:'18%',
+        width:'15%',
         zIndex: '1',
         padding: theme.spacing(2)
     },
