@@ -57,7 +57,7 @@ describe("login-form", () => {
         cy.contains("Invalid Credentials")
     })
 
-    it("login successful", () => {
+    it("sign out functionality", () => {
         cy.get("#username")
         .type("test")
         .should("have.value", usernameTest)
