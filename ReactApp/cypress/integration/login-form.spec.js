@@ -1,7 +1,7 @@
 
 describe("login-form", () => {
     beforeEach(() =>{
-        cy.visit('')
+        cy.visit('/login')
     })
 
     const usernameTest = "test";
@@ -55,5 +55,25 @@ describe("login-form", () => {
         cy.get('#loginButton').click()
 
         cy.contains("Invalid Credentials")
+    })
+
+    it("login successful", () => {
+        cy.get("#username")
+        .type("test")
+        .should("have.value", usernameTest)
+
+        cy.get("#password")
+        .type("pass")
+        .should("have.value", realPassword)
+
+    
+        cy.get('#loginButton').click()
+
+        cy.wait(200)
+
+        cy.contains('Sign OUT').click()
+
+        cy.contains("Login")
+        
     })
 })

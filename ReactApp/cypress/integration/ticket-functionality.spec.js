@@ -75,7 +75,7 @@ describe("ticket-functionality as a user", () => {
 
         cy.get("#difficulty").select("Intern")
 
-        cy.get("#description").click().type("cypress test")
+        cy.get("#description").click().type("cypress test FAIL")
 
         cy.get(".addbtn").click()
 
