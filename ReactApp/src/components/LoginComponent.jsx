@@ -195,6 +195,7 @@ const useStyles = makeStyles((theme) => ({
               autoComplete="current-password"
             />
             <Button
+              id="loginButton"
               type="button"
               fullWidth
               variant="contained"

@@ -1,17 +1,13 @@
 package com.tickieSystem.tickieSystem.service;
 
 import com.tickieSystem.tickieSystem.db.remote.ClosedTicketsRepository;
-import com.tickieSystem.tickieSystem.db.remote.TicketRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;
-import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
-import com.tickieSystem.tickieSystem.db.remote.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
