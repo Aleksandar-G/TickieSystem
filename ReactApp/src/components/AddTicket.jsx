@@ -25,7 +25,10 @@ class AddTicket extends Component {
             duedate: duedate,
             difficulty: difficulty,
             open : 0
-          }).catch((err) => {
+          }).then((res) => {
+              alert("ticket added")
+          })
+          .catch((err) => {
               alert("Try again!")
           })
 
