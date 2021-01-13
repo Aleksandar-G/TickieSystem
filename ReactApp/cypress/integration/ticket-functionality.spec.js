@@ -39,7 +39,7 @@ describe("ticket-functionality as a user", () => {
 
         cy.get("#description").click().type("cypress test")
 
-        cy.get(".addbtn").click()
+        cy.get("#btnAddNewTicket").click()
 
         cy.wait('@addTicket').then((interception) => {
             expect(interception).property('response').to.have.property('statusCode').equal(201)
@@ -77,7 +77,7 @@ describe("ticket-functionality as a user", () => {
 
         cy.get("#description").click().type("cypress test FAIL")
 
-        cy.get(".addbtn").click()
+        cy.get("#btnAddNewTicket").click()
 
         cy.wait('@addTicket').then((interception) => {
             expect(interception).property('response').to.have.property('statusCode').equal(400)

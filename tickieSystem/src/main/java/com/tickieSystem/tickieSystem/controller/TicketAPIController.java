@@ -4,6 +4,9 @@ import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;
 import com.tickieSystem.tickieSystem.db.remote.models.Ticket;
 import com.tickieSystem.tickieSystem.db.remote.models.User;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
+import com.tickieSystem.tickieSystem.db.remote.viewModels.ClosedTicketView;
+import com.tickieSystem.tickieSystem.db.remote.viewModels.ModelsConverter;
+import com.tickieSystem.tickieSystem.db.remote.viewModels.TicketView;
 import com.tickieSystem.tickieSystem.security.CorsFilter;
 import com.tickieSystem.tickieSystem.service.CloseTicketService;
 import com.tickieSystem.tickieSystem.service.TicketService;
@@ -48,15 +51,18 @@ public class TicketAPIController {
 
 
     @GetMapping(path="/tickets/all")
-    public @ResponseBody Iterable<Ticket> getAllTickets() {
+    public @ResponseBody Iterable<TicketView> getAllTickets() {
         // This returns a JSON or XML with the users
         List<Ticket> tickets = (List<Ticket>) ticketService.findAll();
         tickets = tickets.stream().filter(x -> !x.isClaimed()).sorted(Comparator.comparing(x -> x.getDuedate())).collect(Collectors.toList());
-        return tickets;
+
+       return ModelsConverter.TicketsToView(tickets);
+
+        //return tickets;
     }
 
     @GetMapping(value="/tickets")
-    public @ResponseBody List<Ticket> getTicketsForUser(@RequestParam(value = "username", required = true)String username) {
+    public @ResponseBody List<TicketView> getTicketsForUser(@RequestParam(value = "username", required = true)String username) {
         // This returns a JSON or XML with the users
 
         User u = getUserByUsername(username);
@@ -67,7 +73,7 @@ public class TicketAPIController {
         Iterable<Integer>ticketIds = utInt;
         Iterable<Ticket>ticketsForUser = ticketService.findAllbyId(ticketIds);
         List<Ticket> res = StreamSupport.stream(ticketsForUser.spliterator(),false).collect(Collectors.toList());
-        return res;
+        return ModelsConverter.TicketsToView(res);
     }
     @PostMapping(path = "/tickets/add")
     public ResponseEntity addTicket(@RequestBody Ticket ticket){
@@ -117,9 +123,9 @@ public class TicketAPIController {
    }
 
    @GetMapping(path = "tickets/order")
-   public @ResponseBody List<Ticket> orderTickets(@RequestParam(value = "order", required = true)String order,String username) {
+   public @ResponseBody List<TicketView> orderTickets(@RequestParam(value = "order", required = true)String order,String username) {
 
-        List<Ticket> userTickets = getTicketsForUser(username);
+       List<TicketView> userTickets = getTicketsForUser(username);
 
        //userTickets = ticketLogic.ArrangeTicketsByPriority(userTickets);
 
@@ -129,12 +135,14 @@ public class TicketAPIController {
 
 
    @GetMapping(path = "tickets/close")
-   public List<ClosedTicket> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
+   public List<ClosedTicketView> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
         User u = this.getUserByUsername(username);
 
         List<ClosedTicket> closedTicketsForUsers = closeTicketService.findAllByUserid(u.getId());
 
-        return closedTicketsForUsers;
+        return ModelsConverter.ClosedTicketsToView(closedTicketsForUsers);
+
+        //return closedTicketsForUsers;
    }
 
 

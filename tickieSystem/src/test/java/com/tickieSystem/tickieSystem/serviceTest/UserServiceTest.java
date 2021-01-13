@@ -1,4 +1,4 @@
-package com.tickieSystem.tickieSystem.service;
+package com.tickieSystem.tickieSystem.serviceTest;
 
 import com.tickieSystem.tickieSystem.db.remote.UserRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.User;

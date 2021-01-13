@@ -1,4 +1,4 @@
-package com.tickieSystem.tickieSystem.service;
+package com.tickieSystem.tickieSystem.serviceTest;
 
 import com.tickieSystem.tickieSystem.db.remote.ClosedTicketsRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;

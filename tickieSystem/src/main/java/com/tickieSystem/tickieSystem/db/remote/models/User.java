@@ -6,6 +6,16 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private String name;
+
+    private String password;
+
+    private String level;
+
     public User(){
 
 
@@ -22,15 +32,7 @@ public class User {
         this.level = level;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 
-    private String name;
-
-    private String password;
-
-    private String level;
 
     public Integer getId() {
         return id;

@@ -10,8 +10,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class TicketUtilsTest {
 
     List<Ticket> testData = new ArrayList<>();
