@@ -132,6 +132,7 @@ export default function AddTicket() {
               native
               onChange={(e) => handlePriorityChange(e)}
             >
+              <option aria-label="None" value="" />
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>

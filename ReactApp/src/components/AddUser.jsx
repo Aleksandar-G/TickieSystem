@@ -88,7 +88,6 @@ export default function AddUser() {
           </Typography>
           <form className={classes.form} noValidate>
           {addedUser && <div className="alert alert-success">User Added</div>}
-          {addedUser && <div className="alert alert-success">User Added</div>}
             <TextField
               variant="outlined"
               margin="normal"
