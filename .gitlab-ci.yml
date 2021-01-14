@@ -10,6 +10,13 @@ buildBackEnd:
     - ls
     - ./gradlew assemble
 
+buildMessegingBackEnd:
+  stage: build
+  script:
+    - cd MessagingApp/messaging
+    - ls
+    - mvn assemble
+
 buildFrontEnd:
   stage: build
   script:
