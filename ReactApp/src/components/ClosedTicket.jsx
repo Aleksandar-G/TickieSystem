@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import instance from '../Service/AxiosService';
 
 const useStyles = makeStyles({
   root: {
@@ -27,7 +25,6 @@ const useStyles = makeStyles({
 
 export default function ClosedTicket(props) {
   const classes = useStyles();
-
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
@@ -35,7 +32,7 @@ export default function ClosedTicket(props) {
           {props.ticket.id}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          DueDate: {props.ticket.duedate}
+          Closed On: <b>{props.ticket.duedate} </b>
         </Typography>
         <Typography variant="body2" component="p">
           PriorotyLevel: <b>{props.ticket.priority}</b>

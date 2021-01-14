@@ -50,7 +50,7 @@ public class UserAPIController {
     }
 
     @GetMapping(path = "/alluserName")
-    public List<String> getAllUserNames(){
+    public @ResponseBody List<String> getAllUserNames(){
         List<User> users = (List<User>) userService.findAll();
         List <String> userNames = new ArrayList<>();
         for (User u : users) {

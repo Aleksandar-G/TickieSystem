@@ -1,18 +1,27 @@
-import React , {useState} from 'react'
+import React, { Component } from 'react'
 import instance from '../Service/AxiosService';
-
-export default function ClosedTicketsGrid() {
-
-    const [closedTickets, setclosedTickets] = useState([])
-
-    instance.get('http://localhost:8080/db/tickets/closeTicketUser?username='+sessionStorage.getItem("authenticatedUser")).then((res) => {
-        console.log(res.data);
-    }).catch((err) => console.log(err))
+import ClosedTicket from './ClosedTicket';
+import Grid from '@material-ui/core/Grid';
 
 
-    return (
-        <div>
-            
-        </div>
-    )
+
+export default class ClosedTicketsGrid extends Component {
+
+    constructor(props) {
+        super();
+    
+        this.state = {
+          tickets: []
+        };
+      }
+
+    render() {
+        let tickets = [];
+        //console.log(this.props.tickets);
+        for (let index = 0; index < this.props.tickets.length; index++) {
+          tickets.push(<Grid item xs={6} sm={4} md={3}><ClosedTicket ticket={this.props.tickets[index]}></ClosedTicket> </Grid>);
+        }
+        return tickets;
+    }
 }
+
