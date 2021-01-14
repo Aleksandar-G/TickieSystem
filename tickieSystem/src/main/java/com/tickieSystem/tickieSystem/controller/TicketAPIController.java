@@ -18,10 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -110,7 +107,7 @@ public class TicketAPIController {
 
         Integer userId = getUserByUsername(infoCloseticket.get("username").toString()).getId();
         Integer ticketId = Integer.parseInt(infoCloseticket.get("ticketId"));
-       ClosedTicket ct = new ClosedTicket(ticketId,userId);
+        ClosedTicket ct = new ClosedTicket(ticketId,userId);
 
 
        try {
@@ -134,13 +131,28 @@ public class TicketAPIController {
    }
 
 
-   @GetMapping(path = "tickets/close")
-   public List<ClosedTicketView> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
+   @GetMapping(path = "tickets/closeTicketUser")
+   public List<TicketView> getCloseTicketsForUser(@RequestParam(value = "username", required = true)String username){
         User u = this.getUserByUsername(username);
 
         List<ClosedTicket> closedTicketsForUsers = closeTicketService.findAllByUserid(u.getId());
 
-        return ModelsConverter.ClosedTicketsToView(closedTicketsForUsers);
+        List<Integer> closedTicketIds = new ArrayList<>();
+
+       for (ClosedTicket ct :
+               closedTicketsForUsers) {
+           closedTicketIds.add(ct.getTicketid());
+       }
+
+        List<Ticket> res = (List<Ticket>) ticketService.findAllbyId(closedTicketIds);
+
+       for (int i = 0 ;i< res.size();i++){
+           res.get(i).setDuedate(closedTicketsForUsers.get(i).getClosedDate());
+       }
+
+       List<TicketView> response = ModelsConverter.TicketsToView(res);
+
+        return response;
 
         //return closedTicketsForUsers;
    }

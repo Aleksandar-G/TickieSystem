@@ -62,6 +62,15 @@ export default function AdminProfile() {
         >
           <Link className={classes.linkStyle} to="/adduser"> Add new User </Link>
         </Button>
+        <Button
+          className={classes.margin}
+          variant="contained"
+          color="primary"
+          size="Large"
+          id="ShowClosedTickets"
+        >
+          <Link className={classes.linkStyle} to="/closedTickets"> Show Closed Tickets</Link>
+        </Button>
       </div>
       <div className={classes.marginTop}>
         <FormControl component="fieldset">

@@ -12,6 +12,7 @@ import AddTicket from '../components/AddTicket';
 import Profile from './Profile';
 import AddUser from './AddUser';
 import SignOutService from '../Service/SignOutService';
+import ShowClosedTickets from './ShowClosedTickets';
 
 function NavBar() {
 
@@ -66,6 +67,10 @@ function NavBar() {
 
         <SecuredRoute path="/signout">
           <SignOutService />
+        </SecuredRoute>
+
+        <SecuredRoute path="/closedTickets">
+          <ShowClosedTickets />
         </SecuredRoute>
 
       </Switch>
