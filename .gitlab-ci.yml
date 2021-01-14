@@ -15,7 +15,7 @@ buildMessegingBackEnd:
   script:
     - cd MessagingApp/messaging
     - ls
-    - ./mvnw assemble
+    - ./mvnw compile
 
 buildFrontEnd:
   stage: build
