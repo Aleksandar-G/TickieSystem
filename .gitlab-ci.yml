@@ -21,6 +21,7 @@ buildFrontEnd:
   stage: build
   script:
     - cd ReactApp/
+    - npm install
     - npm run build
 
 testBackEnd:
