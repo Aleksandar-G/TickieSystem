@@ -2,6 +2,7 @@ package com.tickieSystem.tickieSystem.serviceTest;
 
 import com.tickieSystem.tickieSystem.db.remote.User_TicketsRepository;
 import com.tickieSystem.tickieSystem.db.remote.models.User_tickets;
+import com.tickieSystem.tickieSystem.service.User_ticketsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

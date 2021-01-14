@@ -93,7 +93,7 @@ export default function AddTicket() {
           )}
           <TextField
             id="duedate"
-            label="Birthday"
+            label="duedate"
             type="date"
             defaultValue="2017-05-24"
             onChange={(e) => {

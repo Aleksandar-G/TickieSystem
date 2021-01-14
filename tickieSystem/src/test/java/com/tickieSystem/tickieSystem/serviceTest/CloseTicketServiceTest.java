@@ -1,6 +1,7 @@
 package com.tickieSystem.tickieSystem.serviceTest;
 
 import com.tickieSystem.tickieSystem.db.remote.ClosedTicketsRepository;
+import com.tickieSystem.tickieSystem.service.CloseTicketService;
 import com.tickieSystem.tickieSystem.db.remote.models.ClosedTicket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

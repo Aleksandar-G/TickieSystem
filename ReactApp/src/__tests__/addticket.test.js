@@ -8,9 +8,8 @@ test('should render correctly', () => {
     
     const {getByText, getByLabelText, getByTestId} = render(<AddTicket />)
 
-    getByText("Add");
+    getByText("Add New Ticket");
     getByText("Difficulty");
-    getByText("DueDate")
     getByText("Priority");
     getByText("Description");
 })
