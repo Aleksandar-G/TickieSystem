@@ -22,7 +22,7 @@ buildFrontEnd:
   script:
     - cd ReactApp/
     - npm install
-    - npm run build
+    - CI=false npm run build
 
 testBackEnd:
   stage: test
