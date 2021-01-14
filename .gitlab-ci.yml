@@ -15,12 +15,13 @@ buildMessegingBackEnd:
   script:
     - cd MessagingApp/messaging
     - ls
-    - ./mvn assemble
+    - ./mvnw assemble
 
 buildFrontEnd:
   stage: build
   script:
     - cd ReactApp/
+    - npm run build
 
 testBackEnd:
   stage: test
