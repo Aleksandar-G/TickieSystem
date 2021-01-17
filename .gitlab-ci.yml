@@ -8,7 +8,7 @@ stages:
   script:
     - cd ReactApp/
     - npm install
-    - docker build -t frontEndTest .
+    - ./docker build -t frontEndTest .
 
 buildBackEnd:
   stage: build
