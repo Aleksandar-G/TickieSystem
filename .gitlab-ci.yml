@@ -3,6 +3,13 @@ stages:
   - test
   - sonarqube
 
+  docker:
+  stage: build
+  script:
+    - cd ReactApp/
+    - npm install
+    - docker build -t frontEndTest .
+
 buildBackEnd:
   stage: build
   script:
