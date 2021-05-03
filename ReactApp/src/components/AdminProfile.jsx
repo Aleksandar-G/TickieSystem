@@ -43,7 +43,6 @@ export default function AdminProfile() {
   };
 
   const orderTickets = (order) => {
-    //console.log(value);
     profileGridTicket.current.changeOrder(order);
   };
 

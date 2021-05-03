@@ -17,7 +17,6 @@ export default class ClosedTicketsGrid extends Component {
 
     render() {
         let tickets = [];
-        //console.log(this.props.tickets);
         for (let index = 0; index < this.props.tickets.length; index++) {
           tickets.push(<Grid item xs={6} sm={4} md={3}><ClosedTicket ticket={this.props.tickets[index]}></ClosedTicket> </Grid>);
         }

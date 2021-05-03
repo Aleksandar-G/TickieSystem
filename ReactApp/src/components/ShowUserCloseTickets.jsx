@@ -23,12 +23,6 @@ export default function ShowUserCloseTickets() {
 
   const handleNameChange = (e) => {};
 
-
-  const fetchUserTicket = (name) => {
-
-    //instance.get()
-  }
-
   return (
     <div>
       <FormControl variant="outlined" fullWidth>

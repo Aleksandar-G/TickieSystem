@@ -40,7 +40,6 @@ export default function AddTicket() {
   const [priority, setpriority] = useState("");
   const [description, setdescription] = useState("");
   const [duedate, setDuedate] = useState("");
-  //const [addedUser, setaddedUser] = useState(false);
   const [addedTicket, setaddedTicket] = useState(false);
 
   const handleDifficultyChange = (event) => {
@@ -95,7 +94,6 @@ export default function AddTicket() {
             id="duedate"
             label="duedate"
             type="date"
-            defaultValue="2017-05-24"
             onChange={(e) => {
               handleDueDateChange(e);
             }}

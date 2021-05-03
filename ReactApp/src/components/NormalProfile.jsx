@@ -8,41 +8,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 
-
-/*export default class NormalProfile extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.profileGridTicket = React.createRef();
-  }
-
-  const [value, setValue] = React.useState('female');
-
-  const handleChange = (event) => {
-  setValue(event.target.value);
-  orderTickets();
-  };
-
-  const orderTickets = () => {
-    profileGridTicket.current.changeOrder(value);
-  };
-
-  render() {
-    return (
-      <div>
-
-        <div>
-          <Grid container spacing={2}>
-            <ProfileGridTicket ref={this.profileGridTicket} />
-          </Grid>
-        </div>
-      </div>
-    )
-  }
-}*/
-
-
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(2),
