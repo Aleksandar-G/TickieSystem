@@ -41,6 +41,7 @@ export default function AddTicket() {
   const [description, setdescription] = useState("");
   const [duedate, setDuedate] = useState("");
   const [addedTicket, setaddedTicket] = useState(false);
+  const [error,seterror] = useState(false);
 
   const handleDifficultyChange = (event) => {
     setdifficulty(event.target.value);
@@ -69,6 +70,7 @@ export default function AddTicket() {
       })
       .then((res) => {
         setaddedTicket(true);
+        seterror(false);
       })
       .catch((err) => {
         alert("Try Again!");
@@ -76,7 +78,13 @@ export default function AddTicket() {
   };
 
   const handeClick = (e) => {
-    apicall();
+
+    if (difficulty.length === 0 || priority.length === 0 || duedate.length === 0 || description.length === 0){
+      seterror(true)
+    }
+    else{
+      apicall();
+    }
   };
 
   return (
@@ -90,6 +98,10 @@ export default function AddTicket() {
           {addedTicket && (
             <div className="alert alert-success">Ticket Added</div>
           )}
+          {error && (
+            <div className="alert alert-warning">Please fill all the the fields</div>
+          )}
+          
           <TextField
             id="duedate"
             label="duedate"

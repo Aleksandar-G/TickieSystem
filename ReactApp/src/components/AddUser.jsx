@@ -44,6 +44,8 @@ export default function AddUser() {
   const [level, setLevel] = useState('');
   const [password, setPassword] = useState('');
   const [addedUser, setaddedUser] = useState(false)
+  const [error,seterror] = useState(false);
+  const [passwordLengthError,setPasswordLengthError] = useState(false);
 
   const handlelevelChange = (event) => {
 
@@ -62,9 +64,18 @@ export default function AddUser() {
 
   const send = () => {
 
-    bcrypt.hash(password,10, function(err, hash){
-      apicall(hash);
-    });
+    if(name.length === 0 || level.length === 0 || password.length === 0){
+      seterror(true);
+    }
+    else if (password.length < 6){
+      setPasswordLengthError(true)
+      seterror(false)
+    }
+    else{
+      bcrypt.hash(password,10, function(err, hash){
+        apicall(hash);
+      });
+    }
   }
 
   const apicall = (hash) => {
@@ -74,6 +85,8 @@ export default function AddUser() {
       password: hash
     }).then((res) => {
       setaddedUser(true);
+      seterror(false);
+      setPasswordLengthError(false);
     }).catch((err) =>{
       alert("Try Again!")
     })
@@ -88,6 +101,8 @@ export default function AddUser() {
           </Typography>
           <form className={classes.form} noValidate>
           {addedUser && <div className="alert alert-success">User Added</div>}
+          {error && <div className="alert alert-warning">Fill all the fields</div>}
+          {passwordLengthError && <div className="alert alert-warning">Password is too short</div>}
             <TextField
               variant="outlined"
               margin="normal"
