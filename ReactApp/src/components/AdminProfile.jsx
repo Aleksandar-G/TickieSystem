@@ -35,8 +35,7 @@ export default function AdminProfile() {
   const classes = useStyles();
 
   const handleChange = (event) => {
-
-
+    
   let order = event.target.value;
   orderTickets(order);
 

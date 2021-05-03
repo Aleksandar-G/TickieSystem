@@ -33,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-
-  
-
 export default function AddUser() {
 
   const classes = useStyles();

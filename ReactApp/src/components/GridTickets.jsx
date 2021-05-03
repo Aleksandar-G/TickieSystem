@@ -21,16 +21,13 @@ class GridTickets extends React.Component {
   }
 
   update = () => {
-    console.log("eto");
     this.componentDidMount();
     this.forceUpdate();
   }
 
   render() {
     let tickets = [];
-    console.log(this.state.tickets.length);
     for (let index = 0; index < this.state.tickets.length; index++) {
-      console.log(this.state.tickets[index])
       tickets.push(<Grid item xs={6} sm={4} md={3}><Ticket for="home" ticket={this.state.tickets[index]} grid={this.update}></Ticket> </Grid>);
     }
     return tickets;
