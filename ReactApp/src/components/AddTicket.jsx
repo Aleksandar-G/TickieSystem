@@ -10,6 +10,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import NavBar from "./NavBar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,7 +42,7 @@ export default function AddTicket() {
   const [description, setdescription] = useState("");
   const [duedate, setDuedate] = useState("");
   const [addedTicket, setaddedTicket] = useState(false);
-  const [error,seterror] = useState(false);
+  const [error, seterror] = useState(false);
 
   const handleDifficultyChange = (event) => {
     setdifficulty(event.target.value);
@@ -78,110 +79,125 @@ export default function AddTicket() {
   };
 
   const handeClick = (e) => {
-
-    if (difficulty.length === 0 || priority.length === 0 || duedate.length === 0 || description.length === 0){
-      seterror(true)
-    }
-    else{
+    if (
+      difficulty.length === 0 ||
+      priority.length === 0 ||
+      duedate.length === 0 ||
+      description.length === 0
+    ) {
+      seterror(true);
+    } else {
       apicall();
     }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Add new Ticket
-        </Typography>
-        <form className={classes.form} noValidate>
-          {addedTicket && (
-            <div className="alert alert-success">Ticket Added</div>
-          )}
-          {error && (
-            <div className="alert alert-warning">Please fill all the the fields</div>
-          )}
-          
-          <TextField
-            id="duedate"
-            label="duedate"
-            type="date"
-            onChange={(e) => {
-              handleDueDateChange(e);
-            }}
-            className={classes.datePicker}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+    <>
+      <NavBar />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Add new Ticket
+          </Typography>
+          <form className={classes.form} noValidate>
+            {addedTicket && (
+              <div className="alert alert-success">Ticket Added</div>
+            )}
+            {error && (
+              <div className="alert alert-warning">
+                Please fill all the the fields
+              </div>
+            )}
 
-          <FormControl className={classes.select} variant="outlined" fullWidth>
-            <InputLabel htmlFor="outlined-age-native-simple" fullWidth>
-              Difficulty
-            </InputLabel>
-            <Select
-              id="difficulty"
+            <TextField
+              id="duedate"
+              label="duedate"
+              type="date"
+              onChange={(e) => {
+                handleDueDateChange(e);
+              }}
+              className={classes.datePicker}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+
+            <FormControl
+              className={classes.select}
               variant="outlined"
-              native
-              onChange={(e) => handleDifficultyChange(e)}
+              fullWidth
             >
-              <option aria-label="None" value="" />
-              <option value="Intern">Intern</option>
-              <option value="Junior">Junior</option>
-              <option value="Senior">Senior</option>
-            </Select>
-          </FormControl>
+              <InputLabel htmlFor="outlined-age-native-simple" fullWidth>
+                Difficulty
+              </InputLabel>
+              <Select
+                id="difficulty"
+                variant="outlined"
+                native
+                onChange={(e) => handleDifficultyChange(e)}
+              >
+                <option aria-label="None" value="" />
+                <option value="Intern">Intern</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+              </Select>
+            </FormControl>
 
-          <FormControl className={classes.select} variant="outlined" fullWidth>
-            <InputLabel htmlFor="outlined-age-native-simple" fullWidth>
-              Priority
-            </InputLabel>
-            <Select
-              id="priority"
+            <FormControl
+              className={classes.select}
               variant="outlined"
-              native
-              onChange={(e) => handlePriorityChange(e)}
+              fullWidth
             >
-              <option aria-label="None" value="" />
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
-            </Select>
-          </FormControl>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="description"
-            label="Description"
-            multiline
-            type="text"
-            id="description"
-            data-testid="passwordLogin"
-            autoComplete="current-password"
-            onChange={(e) => {
-              handleDescriptionChange(e);
-            }}
-          />
+              <InputLabel htmlFor="outlined-age-native-simple" fullWidth>
+                Priority
+              </InputLabel>
+              <Select
+                id="priority"
+                variant="outlined"
+                native
+                onChange={(e) => handlePriorityChange(e)}
+              >
+                <option aria-label="None" value="" />
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </Select>
+            </FormControl>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="description"
+              label="Description"
+              multiline
+              type="text"
+              id="description"
+              data-testid="passwordLogin"
+              autoComplete="current-password"
+              onChange={(e) => {
+                handleDescriptionChange(e);
+              }}
+            />
 
-          <Button
-            id="btnAddNewTicket"
-            type="button"
-            fullWidth
-            variant="contained"
-            color="primary"
-            data-testid="buttonLogin"
-            className={classes.submit}
-            onClick={(e) => {
-              handeClick(e);
-            }}
-          >
-            Add New Ticket
-          </Button>
-        </form>
-      </div>
-    </Container>
+            <Button
+              id="btnAddNewTicket"
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              data-testid="buttonLogin"
+              className={classes.submit}
+              onClick={(e) => {
+                handeClick(e);
+              }}
+            >
+              Add New Ticket
+            </Button>
+          </form>
+        </div>
+      </Container>
+    </>
   );
 }
-

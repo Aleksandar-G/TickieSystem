@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ClosedTicketsGrid from "./ClosedTicketsGrid";
 import instance from "../Service/AxiosService";
 import { makeStyles } from "@material-ui/core/styles";
+import NavBar from "./NavBar";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -84,7 +85,8 @@ export default function ShowClosedTickets() {
   }, [fetchedTickets])
 
   return (
-    <div>
+    <>
+    <NavBar />
     <div>
       <Select
         id="usernames"
@@ -114,6 +116,6 @@ export default function ShowClosedTickets() {
           <ClosedTicketsGrid tickets={fetchedTickets} />
         </Grid>
       </div>
-    </div>
+    </>
   );
 }

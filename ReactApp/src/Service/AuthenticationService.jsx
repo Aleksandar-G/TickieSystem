@@ -17,7 +17,6 @@ class AuthenticationService {
     }
 
     executeJwtAuthenticationService(username, password) {
-        console.log(username);
         return instance.post(`${API_URL}/authenticate`, {
             username,
             password

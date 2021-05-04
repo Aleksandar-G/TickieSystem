@@ -43,8 +43,6 @@ const doit = function(ticketId,username,update){
   .catch(function (error) {
     console.log(error);
   });
-
-  
 }
 
 export default function HomeTicket(props) {

@@ -16,21 +16,19 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   marginTop: {
-    marginTop:theme.spacing(2), 
+    marginTop: theme.spacing(2),
   },
 }));
 
-
 export default function NormalProfile() {
-
   const profileGridTicket = React.createRef();
   const classes = useStyles();
 
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
 
   const handleChange = (event) => {
-  setValue(event.target.value);
-  orderTickets();
+    setValue(event.target.value);
+    orderTickets();
   };
 
   const orderTickets = () => {
@@ -38,37 +36,40 @@ export default function NormalProfile() {
   };
 
   return (
-    <div className={classes.margin}>
-      <div>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Order Tickets by:</FormLabel>
-          <RadioGroup aria-label="order Tickets" name="orderTickets" value={value} onChange={handleChange}>
-            <FormControlLabel
-              value="duedate"
-              control={<Radio color="primary" />}
-              label="DueDate"
-            />
-            <FormControlLabel
-              value="difficulty"
-              control={<Radio color="primary" />}
-              label="Difficulty"
-            />
-            <FormControlLabel
-              value="priority"
-              control={<Radio color="primary" />}
-              label="Priority"
-            />
-          </RadioGroup>
-        </FormControl>
+    
+      <div className={classes.margin}>
+        <div>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Order Tickets by:</FormLabel>
+            <RadioGroup
+              aria-label="order Tickets"
+              name="orderTickets"
+              value={value}
+              onChange={handleChange}
+            >
+              <FormControlLabel
+                value="duedate"
+                control={<Radio color="primary" />}
+                label="DueDate"
+              />
+              <FormControlLabel
+                value="difficulty"
+                control={<Radio color="primary" />}
+                label="Difficulty"
+              />
+              <FormControlLabel
+                value="priority"
+                control={<Radio color="primary" />}
+                label="Priority"
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
+        <div>
+          <Grid container spacing={2}>
+            <ProfileGridTicket ref={profileGridTicket} />
+          </Grid>
+        </div>
       </div>
-      <div>
-        <Grid container spacing={2}>
-          <ProfileGridTicket ref={profileGridTicket} />
-        </Grid>
-      </div>
-    </div>
   );
 }
-
-
-
