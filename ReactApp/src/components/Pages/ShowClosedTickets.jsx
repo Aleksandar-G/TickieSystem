@@ -1,9 +1,9 @@
 import { Select, Grid, Button } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import ClosedTicketsGrid from "./ClosedTicketsGrid";
-import instance from "../Service/AxiosService";
+import ClosedTicketsGrid from "../Reusable/ClosedTicketsGrid";
+import instance from "../../Service/AxiosService";
 import { makeStyles } from "@material-ui/core/styles";
-import NavBar from "./NavBar";
+import NavBar from "../Reusable/NavBar";
 
 const useStyles = makeStyles((theme) => ({
   container: {

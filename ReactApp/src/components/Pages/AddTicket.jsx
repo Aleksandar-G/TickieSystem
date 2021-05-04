@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/addTicket.css";
-import instance from "../Service/AxiosService";
+import "../../styles/addTicket.css";
+import instance from "../../Service/AxiosService";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -10,7 +10,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import NavBar from "./NavBar";
+import NavBar from "../Reusable/NavBar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import ProfileGridTicket from "./ProfileGridTicket";
+import ProfileGridTicket from "../Reusable/ProfileGridTicket";
 import { makeStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";

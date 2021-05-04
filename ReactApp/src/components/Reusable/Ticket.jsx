@@ -1,6 +1,6 @@
 import React from 'react';
-import UserTicket from './UserTicket';
-import HomeTicket from './HomeTicket';
+import UserTicket from '../Reusable/UserTicket';
+import HomeTicket from '../Reusable/HomeTicket';
 
 
 export default function ticket(props) {

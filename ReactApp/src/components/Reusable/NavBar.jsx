@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import AuthenticationService from "./../Service/AuthenticationService";
+import AuthenticationService from "../../Service/AuthenticationService";
 
 function NavBar() {
-  const linkStyles = {
-    color: "grey",
-  };
-
   const navbarstyle = {
     backgroundColor: "#ffffff",
   };

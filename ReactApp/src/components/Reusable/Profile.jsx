@@ -1,8 +1,8 @@
-import instance from "../Service/AxiosService";
-import AdminProfile from "./AdminProfile";
-import NormalProfile from "./NormalProfile";
+import instance from "../../Service/AxiosService";
+import AdminProfile from "../Pages/AdminProfile";
+import NormalProfile from "../Pages/NormalProfile";
 import React, { Component } from "react";
-import NavBar from "./NavBar";
+import NavBar from "../Reusable/NavBar";
 
 class Profile extends Component {
   constructor(props) {

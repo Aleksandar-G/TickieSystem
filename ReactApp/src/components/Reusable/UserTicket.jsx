@@ -5,8 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import instance from '../Service/AxiosService';
-import { grey } from '@material-ui/core/colors';
+import instance from '../../Service/AxiosService';
 
 const useStyles = makeStyles({
   root: {
@@ -23,16 +22,12 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-  color: {
-    color: grey,
-  },
 
 });
 
 
-const doit = function(ticketId,username,update){
-  console.log("asdasdasd");
-  instance.post( 'http://localhost:8080/db/tickets/assign', {
+const closeTicket = function(ticketId,username,update){
+  instance.post( 'http://localhost:8080/db/tickets/close', {
     ticketId: ticketId,
     username: username
   })
@@ -50,7 +45,7 @@ export default function HomeTicket(props) {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <CardContent className={classes.color}>
+      <CardContent>
         <Typography variant="h5" component="h2">
           {props.ticket.id}
         </Typography>
@@ -58,7 +53,7 @@ export default function HomeTicket(props) {
           DueDate: {props.ticket.duedate}
         </Typography>
         <Typography variant="body2" component="p">
-          PriorityLevel: <b>{props.ticket.priority}</b>
+          PriorotyLevel: <b>{props.ticket.priority}</b>
           <br />
           DifficultyLevel: <b>{props.ticket.difficulty}</b>
         </Typography>
@@ -66,8 +61,8 @@ export default function HomeTicket(props) {
           {props.ticket.description}
         </Typography>
       </CardContent>
-      <CardActions> 
-        <Button size="small" onClick={() => doit(props.ticket.id,sessionStorage.getItem("authenticatedUser"), props.grid)}>Claim Ticket</Button>
+      <CardActions>
+        <Button size="small" onClick={() => closeTicket(props.ticket.id,sessionStorage.getItem("authenticatedUser"), props.grid)}>Close Ticket</Button>
       </CardActions>
     </Card>
   );

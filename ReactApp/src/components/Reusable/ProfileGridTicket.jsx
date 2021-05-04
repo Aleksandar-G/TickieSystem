@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import instance from "../Service/AxiosService";
+import instance from "../../Service/AxiosService";
 import Ticket from "./Ticket";
 import { Grid } from "@material-ui/core";
 

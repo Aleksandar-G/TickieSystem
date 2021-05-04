@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect, Route} from 'react-router-dom'
-import AuthenticationService from '../Service/AuthenticationService'
+import AuthenticationService from "../../Service/AuthenticationService";
 
 export default function SecuredRoute({ children, ...rest }) {
     return (

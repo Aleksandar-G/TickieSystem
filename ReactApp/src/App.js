@@ -1,19 +1,19 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/LoginComponent";
-import SecuredRoute from "./components/SecuredRoute";
-import AddTicket from "./components/AddTicket";
-import Profile from "./components/Profile";
-import AddUser from "./components/AddUser";
+import Home from "./components/Pages/Home";
+import Login from "./components/Pages/LoginComponent";
+import SecuredRoute from "./components/Reusable/SecuredRoute";
+import AddTicket from "./components/Pages/AddTicket";
+import Profile from "./components/Reusable/Profile";
+import AddUser from "./components/Pages/AddUser";
 import SignOutService from "./Service/SignOutService";
-import ShowClosedTickets from "./components/ShowClosedTickets";
+import ShowClosedTickets from "./components/Pages/ShowClosedTickets";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <Switch>
           <SecuredRoute exact path="/">
             <Home />
@@ -38,8 +38,8 @@ function App() {
             <ShowClosedTickets />
           </SecuredRoute>
         </Switch>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 

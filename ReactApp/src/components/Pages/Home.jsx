@@ -1,7 +1,7 @@
 import React from "react";
-import GridTickets from "./GridTickets";
+import GridTickets from "../Reusable/GridTickets";
 import { Grid } from "@material-ui/core";
-import NavBar from "./NavBar";
+import NavBar from "../Reusable/NavBar";
 
 function Home() {
   return (
